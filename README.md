@@ -1,5 +1,6 @@
-# PLL-Immaculate-Grid
-## NOTE: Press New Game once it loads, its buggy on it the first grid it makes
+# PLL Immaculate Grid
+# NOTE: Press New Game once it loads, its buggy on it the first grid it makes
+# https://patmc225.github.io/app/
 * I tried to create a PLL version of Sports Reference's Immaculate Grid game (https://www.immaculategrid.com/?utm_source=sr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav).
 * The categories on the left are always current PLL teams.
 * The categories on the top randomly switch between colleges, MLL teams, countries, stats, positions, and more.
