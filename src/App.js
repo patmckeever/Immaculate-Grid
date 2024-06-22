@@ -382,43 +382,6 @@ function App() {
 
   const [players, setPlayers] = useState({}); // State to store players
 
-  useEffect(() => {
-    let players = {}; // Object to store player data
-
-    // Fetching JSON file using fetch API
-   
-    // Processing each player object in the JSON array
-    data.forEach(player => {
-      const name = player.name;
-      const teams = player.teams;
-      const year = player.year;
-      const seaP = player.sp;
-      const carP = player.c;
-      const seaGB = player.sgb;
-      const carGB = player.cgb;
-      const seaSV = player.ssv;
-      const carSV = player.csv;
-      const one = player.one;
-      const draft = player.draft;
-      const tall = player.tall;
-      const short = player.short;
-      const lefty = player.lefty;
-      const position = player.position;
-      const college = player.college;
-      const country = player.country;
-      const picture = player.picture;
-      const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
-
-      const info = [teams, year, seaP, carP, seaGB, carGB, seaSV, carSV, one, draft, tall, short, lefty, position, college, country, picture,link];
-
-      players[name] = info; // Assigning info array to players object under key 'name'
-    });
-
-    // Now players object is populated with data from JSON
-    
-    setPlayers(players)
-  }, []); // Run once on component mount
-
   // Function to check categories for a player
   const check = (name, cat1, cat2) => {
     let c1 = false;
@@ -556,11 +519,6 @@ function App() {
   };
 
   //console.log();
-
-  useEffect(() => {
-    generate();
-
-  }, []); // Run once on component mount
   
 
   const [selectedBox, setSelectedBox] = useState(null);
@@ -678,6 +636,36 @@ function App() {
     
   };
   useEffect(() => {
+    let p = {}; // Object to store player data
+
+    data.forEach(player => {
+      const name = player.name;
+      const teams = player.teams;
+      const year = player.year;
+      const seaP = player.sp;
+      const carP = player.c;
+      const seaGB = player.sgb;
+      const carGB = player.cgb;
+      const seaSV = player.ssv;
+      const carSV = player.csv;
+      const one = player.one;
+      const draft = player.draft;
+      const tall = player.tall;
+      const short = player.short;
+      const lefty = player.lefty;
+      const position = player.position;
+      const college = player.college;
+      const country = player.country;
+      const picture = player.picture;
+      const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
+
+      const info = [teams, year, seaP, carP, seaGB, carGB, seaSV, carSV, one, draft, tall, short, lefty, position, college, country, picture,link];
+
+      p[name] = info;
+    });
+    
+    setPlayers(p)
+
     generate();
     let list = [];
     let desc =[];
@@ -718,7 +706,6 @@ function App() {
     } 
     setLengths(l)
     setArrays(a)
-    //console.log(a)
 
   }, []);
 
@@ -767,7 +754,6 @@ function App() {
   
   
 
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline /> {/* Ensures default styles are applied */}
@@ -784,7 +770,7 @@ function App() {
             }}
           >
             {/* Title with button to the right */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: 2, marginLeft: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: 2, marginLeft: 2, marginTop: '50px' }}>
               <Typography fontSize='15px'>PLL Immaculate Grid</Typography>
               <Button variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
@@ -840,7 +826,7 @@ function App() {
                         
                       ) :
                         index>0 && category[buttonTexts[index]]!==undefined ? (
-                        <box
+                        <Box
                           style={{
                             width: '100%',
                             height: '50%',
@@ -852,7 +838,7 @@ function App() {
                           }}>
                           
                           {category[buttonTexts[index]].text}
-                          </box>
+                          </Box>
                         
                       ) : (
                         <img
@@ -1108,12 +1094,17 @@ function App() {
               
             )}
             <Typography fontSize='10px'>Tap on a logo or category for help.</Typography>
+            <Typography fontSize='8px' marginTop="-10px">Note: Tap "NEW GAME" upon first load for everything to load correctly</Typography>
+            <Typography fontSize='8px' marginTop="-10px">Note: MLL-only players do not have college/bio data.</Typography>
 
           </Box>
         </Container>
       </Box>
     </ThemeProvider>
+
+
   );
+  
 }
 
 export default App;
