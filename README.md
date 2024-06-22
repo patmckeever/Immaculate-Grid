@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# PLL-Immaculate-Grid
+## NOTE: Press New Game once it loads, its buggy on it the first grid it makes
+* I tried to create a PLL version of Sports Reference's Immaculate Grid game (https://www.immaculategrid.com/?utm_source=sr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav).
+* The categories on the left are always current PLL teams.
+* The categories on the top randomly switch between colleges, MLL teams, countries, stats, positions, and more.
+* A description of each category appears when you tap on it
+* You get 9 guesses to fill out the grid.
+* When you're out of guesses or you give up, you can see a list of every player that fills out each square.
+* Every player's name leads to their page on the PLL website.
+* I used the Retool player info table and downloaded season statistics to get all of the data.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<img width="418" alt="Screenshot 2024-06-21 at 5 43 30 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/632e914e-dd7c-46a7-aca6-554ba44e7d94">
 
-### `npm start`
+<img width="421" alt="Screenshot 2024-06-21 at 5 50 08 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/bae3bdff-43f9-4194-bd0c-40b2933ec6de">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img width="411" alt="Screenshot 2024-06-21 at 5 51 40 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/ec506144-dfa9-43b1-98b3-394cda4de5b9">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img width="422" alt="Screenshot 2024-06-21 at 5 45 59 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/76ce34be-97ea-49cd-92f6-5367f33ccd17">
 
-### `npm test`
+<img width="414" alt="Screenshot 2024-06-21 at 5 47 12 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/0ec46d3b-a8a2-4180-a611-3f259596f662">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img width="423" alt="Screenshot 2024-06-21 at 6 06 41 PM" src="https://github.com/patmckeever/PLL-Immaculate-Grid/assets/172612314/9f9277f6-0386-4717-9fb6-fc00d9884cae">
