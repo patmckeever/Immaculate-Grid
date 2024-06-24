@@ -1,14 +1,11 @@
 // src/App.js
-import React, { useState, useEffect,Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Button, CssBaseline, Paper, ClickAwayListener } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ComboBox from './ComboBox';
 import image from './pll.png'; // Import the image
-import waterdogs from './waterdogs.png'; // Import the image
 import data from './players.json';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import ErrorBoundary from './ErrorBoundary.js';
 import styled from 'styled-components';
 
 
@@ -17,8 +14,6 @@ data.forEach(player => {
   const p = {label: player.name, year: player.year};
   list.push(p)
 });
-
-const jawn = ". "
 
 let count = 0;
 
@@ -427,14 +422,16 @@ function App() {
       let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One","A","M","FO","SSDM","LSM","D","G"];
       let mllCats = ["Dragons", "Riptide", "Bayhawks", "Lizards", "Hounds", "Pride", "Rattlers", "Launch", "Blaze", "Machine", "Nationals", "Hammerheads", "Chrome", "Barrage"];
 
-      let cat = ""
+      
       for (let i = 0; i < 3; i++) {
+        let cat = ""
         cat = pllCats[Math.floor(Math.random() * pllCats.length)]
         left.push(cat);
         pllCats = pllCats.filter(item => item !== cat);
       }
 
       for (let i = 0; i < 3; i++) {
+        let cat = ""
         const topic = ['pll', 'colleges', 'stats', 'mll'][Math.floor(Math.random() * 4)];
         switch (topic) {
           case 'pll':
@@ -550,7 +547,7 @@ function App() {
   
   const determineButtonText = (index) => {
     const isFirstRow = index > 0 && index < 4;
-    const isLeftRow = index == 4 || index == 8 || index == 12;
+    const isLeftRow = index === 4 || index === 8 || index === 12;
 
     if(isFirstRow) return top[parseInt(index) - 1];
     else if(isLeftRow)  return left[(index/4) -1];
@@ -600,7 +597,7 @@ function App() {
     let over = [];
     for (let i = 0; i < 16; i++) {   
       list.push(determineButtonText(i));
-      if(determineButtonText(i)!==undefined) desc.push(category[determineButtonText(i)].description)
+      if(determineButtonText(i) !== undefined) desc.push(category[determineButtonText(i)].description)
       else desc.push(undefined)
       f.push(false);
       text.push("");
@@ -675,7 +672,7 @@ function App() {
     let over = []
     for (let i = 0; i < 16; i++) {   
       list.push(determineButtonText(i));
-      if(determineButtonText(i)!==undefined) desc.push(category[determineButtonText(i)].description)
+      if(determineButtonText(i) !== undefined) desc.push(category[determineButtonText(i)].description)
       else desc.push(undefined)
       f.push(false);
       text.push("");
@@ -739,7 +736,7 @@ function App() {
 
     for (let i = 0; i < 16; i++) { 
       if(bool) over.push(false)
-      else if(i>4 && i!=8 && i!=12) over.push(true);
+      else if(i > 4 && i !== 8 && i !== 12) over.push(true);
       else over.push(false);
     }
     setOver(over)
@@ -751,6 +748,8 @@ function App() {
     handleClickAway();
   };
 
+  const nothing = () => {
+  };
   
   
 
@@ -770,7 +769,7 @@ function App() {
             }}
           >
             {/* Title with button to the right */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: 2, marginLeft: 2, marginTop: '50px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
               <Typography fontSize='15px'>PLL Immaculate Grid</Typography>
               <Button variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
@@ -790,8 +789,6 @@ function App() {
               {Array.from({ length: 16 }).map((_, index) => {
                 const isFirstRow = index < 4;
                 const isFirstColumn = index % 4 === 0;
-                const isTopColumn = index <= 4
-                const isLeftColumn = index == 4 || index == 8 || index == 12
                 const isImageCell = (isFirstRow || isFirstColumn);
 
                 return (
@@ -807,12 +804,12 @@ function App() {
                       boxSizing: 'border-box',
                       cursor: 'pointer',
                     }}
-                    onClick={() => isImageCell ? handleImageClick(index) : handleBoxClick(index)}
+                    onClick={() => index == 0 ? nothing : isImageCell ? handleImageClick(index) : handleBoxClick(index)}
                   >
                     
                     {isImageCell ? (
                     
-                     index>0 && category[buttonTexts[index]]!==undefined && category[buttonTexts[index]].image!=="" ? (
+                     index>0 && category[buttonTexts[index]] !== undefined && category[buttonTexts[index]].image !== "" ? (
                         <img
                           src={category[buttonTexts[index]].image}
                           alt={category[buttonTexts[index]].text}
@@ -825,7 +822,7 @@ function App() {
                         />
                         
                       ) :
-                        index>0 && category[buttonTexts[index]]!==undefined ? (
+                        index>0 && category[buttonTexts[index]] !== undefined ? (
                         <Box
                           style={{
                             width: '100%',
@@ -890,7 +887,6 @@ function App() {
                             bottom: 0,
                             fontSize:'11px',
                             width: '100%',
-                            color: 'white',
                             textAlign: 'center',
                             padding: '5px 0',
                             zIndex: 2, // Ensure the text is above the image
@@ -950,7 +946,7 @@ function App() {
                             zIndex: 2, // Ensure the text is above the image
                           }}
                         >
-                          <a style={{color: "#90caf9",fontSize:'9px',}} href={players[playerName[index]][17]} target = "_blank"> {playerName[index]} </a>
+                          <a style={{color: "#90caf9",fontSize:'9px',}} href={players[playerName[index]][17]} target = "_blank" rel="noreferrer"> {playerName[index]} </a>
                           
                         </Box>
                       </Box>
@@ -1021,7 +1017,7 @@ function App() {
                 <Paper
                   sx={{
                     position: 'absolute',
-                    top: 30,
+                    top: 10,
                     
                     height: '5%',
                     borderRadius: '8px',
@@ -1042,7 +1038,7 @@ function App() {
             {/* Subtitle with button to the right */}
             {guesses>0 ?  (
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: .5 }}>
                 <Typography fontSize='15px'>Guesses Left:</Typography>
                 <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-10px' marginRight='10px'>{guesses}</Typography>
                 <Button variant="contained" color="primary" onClick={giveUp}>
@@ -1071,7 +1067,7 @@ function App() {
             )}
             
 
-            {isBoxVisible && arrays[selectedSum]!==undefined  &&  (
+            {isBoxVisible && arrays[selectedSum] !== undefined  &&  (
              
                 <Overlay>
                 <ClickAwayListener onClickAway={handleCloseBox}>
@@ -1084,7 +1080,7 @@ function App() {
                     {arrays[selectedSum].map((text, index) => (
                       <span key={index} style={{ display: 'flex',alignItems: 'center'}}>
                         <p  style={{color:'lightgray', textAlign: 'left',fontSize:"15px", marginRight: '5px'}}>{index+1}. </p>
-                        <a  href={players[text][17]} target="_blank" style={{ color: '#90caf9',textAlign: 'left',fontSize:"15px" }}>{text} </a>
+                        <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"15px" }}>{text} </a>
                         <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"10px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
                       </span>
                     ))}
