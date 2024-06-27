@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/Immaculate-Grid/static/css/main.e6c13ad2.css",
+    "main.js": "/Immaculate-Grid/static/js/main.242274ee.js",
+    "static/js/453.68693753.chunk.js": "/Immaculate-Grid/static/js/453.68693753.chunk.js",
+    "static/media/Hammerheads.png": "/Immaculate-Grid/static/media/Hammerheads.d354943a400334a03516.png",
+    "static/media/Blaze.png": "/Immaculate-Grid/static/media/Blaze.f044cb9085a4733393cf.png",
+    "static/media/Bayhawks.png": "/Immaculate-Grid/static/media/Bayhawks.9d22f954139b6d320c39.png",
+    "static/media/Pride.png": "/Immaculate-Grid/static/media/Pride.7706b02492828515c9cc.png",
+    "static/media/Barrage.png": "/Immaculate-Grid/static/media/Barrage.635b720450912b55f3a9.png",
+    "static/media/Machine.png": "/Immaculate-Grid/static/media/Machine.9a056602bba754b5260f.png",
+    "static/media/Rattlers.png": "/Immaculate-Grid/static/media/Rattlers.bbd07786f84b1d4fcb37.png",
+    "static/media/Dragons.png": "/Immaculate-Grid/static/media/Dragons.db79a0be6ea50359b993.png",
+    "static/media/IRQ.png": "/Immaculate-Grid/static/media/IRQ.49d8a6fa541bbcbf4aab.png",
+    "static/media/Hounds.png": "/Immaculate-Grid/static/media/Hounds.6aa96df089eb4af0b41e.png",
+    "static/media/Launch.png": "/Immaculate-Grid/static/media/Launch.cac5e5daeb671cd7776c.png",
+    "static/media/Nationals.png": "/Immaculate-Grid/static/media/Nationals.6b7e8f7b2f26447e2734.png",
+    "static/media/Lizards.png": "/Immaculate-Grid/static/media/Lizards.60938ba5696705f0dc65.png",
+    "static/media/cannons.png": "/Immaculate-Grid/static/media/cannons.0d1b2cf882967b1bf409.png",
+    "static/media/waterdogs.png": "/Immaculate-Grid/static/media/waterdogs.00a9740ab52ec0654cfd.png",
+    "static/media/Riptide.png": "/Immaculate-Grid/static/media/Riptide.b5f3b4520450c7e133ca.png",
+    "static/media/atlas.png": "/Immaculate-Grid/static/media/atlas.f6620b3fd7a68879cd29.png",
+    "static/media/chaos.png": "/Immaculate-Grid/static/media/chaos.eeb181281cdfa140f92e.png",
+    "static/media/Chrome.png": "/Immaculate-Grid/static/media/Chrome.5bd4d4ef66a4f158966c.png",
+    "static/media/outlaws.png": "/Immaculate-Grid/static/media/outlaws.3893c06c797f3cd61886.png",
+    "static/media/redwoods.png": "/Immaculate-Grid/static/media/redwoods.9f8e1f7f579e9678d170.png",
+    "static/media/archers.png": "/Immaculate-Grid/static/media/archers.eaecf8430c1e87206d52.png",
+    "static/media/whipsnakes.png": "/Immaculate-Grid/static/media/whipsnakes.1a63598595fcc019b467.png",
+    "index.html": "/Immaculate-Grid/index.html",
+    "main.e6c13ad2.css.map": "/Immaculate-Grid/static/css/main.e6c13ad2.css.map",
+    "main.242274ee.js.map": "/Immaculate-Grid/static/js/main.242274ee.js.map",
+    "453.68693753.chunk.js.map": "/Immaculate-Grid/static/js/453.68693753.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.242274ee.js"
+  ]
+}
