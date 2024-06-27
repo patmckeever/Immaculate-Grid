@@ -1089,9 +1089,9 @@ function App() {
                 </Overlay>
               
             )}
-            <Typography fontSize='12px'>Tap on a logo or category for help.</Typography>
-            <Typography fontSize='12px' marginTop="-10px">Tap "NEW GAME" upon first load for everything to load correctly</Typography>
-            <Typography fontSize='8px' marginTop="-10px">Notes: MLL-only players do not have college/bio data.<br></br>Player must have finished a season with PLL/MLL team to qualify.<br></br> Player must have finished NCAA career with team to qualify</Typography>
+            <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Tap on a logo or category for help</Typography>
+            <Typography fontSize='12px' marginTop="-10px">Tap "NEW GAME" on first load to work correctly</Typography>
+            <Typography fontSize='10px' marginTop="-10px">MLL-only players do not have college/position/country/height data<br></br>Player must have finished a season with PLL/MLL team to qualify<br></br> Player must have finished NCAA career with team to qualify</Typography>
     
 
           </Box>
