@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import styled from 'styled-components';
 
+let gridCount = 1
 
 const list = [];
 data.forEach(player => {
@@ -244,7 +245,7 @@ const category = {
   "500SV": {
     text: "500 SAVE CAREER",
     image: "",
-    description: "Player has recorded 500 points in his career"
+    description: "Player has recorded 500 saves in his career"
 
   },
   "TALL": {
@@ -422,6 +423,7 @@ function App() {
     
     // Function to generate categories
     const genCats = () => {
+      /*
       let pllCats = ["Atlas", "Archers", "Cannons", "Chaos", "Outlaws", "Redwoods", "Waterdogs", "Whipsnakes"];
       let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse","USA", "CAN", "IRQ"];
       let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One","A","M","FO","SSDM","LSM","D","G"];
@@ -462,7 +464,11 @@ function App() {
           default:
             break;
         }
-      }
+      }*/
+
+      left = ["Atlas","Waterdogs","Chaos"]
+      top = ["Cannons","CAN","500SV"]
+      gridCount = 1
     };
 
 
@@ -666,6 +672,7 @@ function App() {
    // console.log(l)
 
 
+
   }, []);
 
   
@@ -731,11 +738,19 @@ function App() {
             }}
           >
             {/* Title with button to the right */}
+            {/*
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
               <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Button variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
               </Button>
+            </Box>*/}
+            
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
+              <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
+              <Typography variant="contained">
+                #{gridCount}
+              </Typography>
             </Box>
 
             {/* Grid container */}
@@ -766,7 +781,7 @@ function App() {
                       boxSizing: 'border-box',
                       cursor: 'pointer',
                     }}
-                    onClick={() => index == 0 ? nothing : isImageCell ? handleImageClick(index) : handleBoxClick(index)}
+                    onClick={() => index === 0 ? nothing : isImageCell ? handleImageClick(index) : handleBoxClick(index)}
                   >
                     
                     {isImageCell ? (
