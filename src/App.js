@@ -171,49 +171,49 @@ const category = {
   "Virginia": {
     text: "Virginia",
     image: require('./Virginia.png'),
-    description: "Player graduated from the University of Virginia"
+    description: "Player played at the University of Virginia"
 
   },
   "Notre Dame": {
     text: "Notre Dame",
     image: require('./NotreDame.png'),
-    description: "Player graduated from the University of Notre Dame"
+    description: "Player played at the University of Notre Dame"
 
   },
   "Maryland": {
     text: "Maryland",
     image: require('./Maryland.png'),
-    description: "Player graduated from the University of Maryland"
+    description: "Player played at the University of Maryland"
 
   },
   "Johns Hopkins": {
     text: "Johns Hopkins",
     image: require('./JohnsHopkins.png'),
-    description: "Player graduated from Johns Hopkins University"
+    description: "Player played at Johns Hopkins University"
 
   },
   "Duke": {
     text: "Duke",
     image: require('./Duke.png'),
-    description: "Player graduated from Duke University"
+    description: "Player played at Duke University"
 
   },
   "Denver": {
     text: "Denver",
     image: require('./Denver.png'),
-    description: "Player graduated from the University of Denver"
+    description: "Player played at the University of Denver"
 
   },
   "Syracuse": {
     text: "Syracuse",
     image: require('./Syracuse.png'),
-    description: "Player graduated from Syracuse University"
+    description: "Player played at Syracuse University"
 
   },
   "30P": {
     text: "30 P SEASON",
     image: "",
-    description: "Player has scored 30 points in a single season"
+    description: "Player has scored 30 points in a single season. When paired with a team, does not need to be in the same season"
 
   },
   "200P": {
@@ -225,7 +225,7 @@ const category = {
   "30GB": {
     text: "30 GB SEASON",
     image: "",
-    description: "Player has recorded 30 ground balls in a single season"
+    description: "Player has recorded 30 ground balls in a single season. When paired with a team, does not need to be in the same season"
 
   },
   "300GB": {
@@ -238,7 +238,7 @@ const category = {
   "100SV": {
     text: "100 SAVE SEASON",
     image: "",
-    description: "Player has recorded 100 saves in a single season"
+    description: "Player has recorded 100 saves in a single season. When paired with a team, does not need to be in the same season"
 
   },
   "500SV": {
@@ -378,7 +378,7 @@ function App() {
   const [players, setPlayers] = useState({}); // State to store players
 
   // Function to check categories for a player
-  const check = (name, cat1, cat2) => {
+  const check = (players,name, cat1, cat2) => {
     let c1 = false;
     let c2 = false;
     if (players[name].includes(cat1)) {
@@ -401,17 +401,22 @@ function App() {
     return c1 && c2;
   };
 
-  const bigCheck = (cat1, cat2) => {
+  const bigCheck = (players, cat1, cat2) => {
+   // console.log("IN HERE: "+ cat1+" + "+cat2)
     const list = [];
+  //  console.log("Checking: "+players["Paul Rabil"])
     Object.keys(players).forEach(player => {
-      if (check(player, cat1, cat2)) {
+      
+      if (check(players,player, cat1, cat2)) {
+        
         list.push(player);
       }
     });
+   // console.log(list)
     return list;
   };
 
-  const generate = () => {
+  const generate = (p) => {
     top = []
     left = []
     
@@ -458,31 +463,6 @@ function App() {
             break;
         }
       }
-
-      // Checking and printing results
-      // (Modify as per your UI needs)
-      //console.log(left);
-      //console.log(top);
-      //console.log(`${left[0]} + ${top[0]}: `);
-      //console.log(bigCheck(left[0], top[0]));
-      //console.log(`${left[1]} + ${top[0]}: `);
-      //console.log(bigCheck(left[1], top[0]));
-      //console.log(`${left[2]} + ${top[0]}: `);
-      //console.log(bigCheck(left[2], top[0]));
-      //console.log(`${left[0]} + ${top[1]}: `);
-      //console.log(bigCheck(left[0], top[1]));
-      //console.log(`${left[1]} + ${top[1]}: `);
-      //console.log(bigCheck(left[1], top[1]));
-      //console.log(`${left[2]} + ${top[1]}: `);
-      //console.log(bigCheck(left[2], top[1]));
-      //console.log(`${left[0]} + ${top[2]}: `);
-      //console.log(bigCheck(left[0], top[2]));
-      //console.log(`${left[1]} + ${top[2]}: `);
-      //console.log(bigCheck(left[1], top[2]));
-      //console.log(`${left[2]} + ${top[2]}: `);
-      //console.log(bigCheck(left[2], top[2]));
-      //console.log(left);
-      //console.log(top);
     };
 
 
@@ -501,11 +481,11 @@ function App() {
     
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        if(bigCheck(left[i],top[j]).length<1)
+        if(bigCheck(p,left[i],top[j]).length<1)
         {
-          console.log("Redoing: " + left[i] + " + " + top[j] + " length is "+ bigCheck(left[i],top[j]).length +", count: " + count)
+         //console.log("Redoing: " + left[i] + " + " + top[j] + " length is "+ bigCheck(p,left[i],top[j]).length +", count: " + count)
             count++
-            if(count<100) generate();
+            if(count<1000) generate(p);
             
             return;
         }
@@ -514,8 +494,6 @@ function App() {
     count = 0 
 
   };
-
-  //console.log();
   
 
   const [selectedBox, setSelectedBox] = useState(null);
@@ -588,7 +566,7 @@ function App() {
   };
 
   const handleGenerateClick = () => {
-    generate();
+    generate(players);
     let list = [];
     let desc = [];
     let f = [];
@@ -624,46 +602,27 @@ function App() {
       l.push(undefined)
       a.push(undefined)
       for (let j = 0; j < 3; j++) {
-        l.push(bigCheck(left[i],top[j]).length)
-        a.push(bigCheck(left[i],top[j]))
+        l.push(bigCheck(players,left[i],top[j]).length)
+        a.push(bigCheck(players,left[i],top[j]))
       }
     } 
     setLengths(l)
     setArrays(a)
+    //console.log(l)
     
   };
   useEffect(() => {
     let p = {}; // Object to store player data
 
     data.forEach(player => {
-      const name = player.name;
-      const teams = player.teams;
-      const year = player.year;
-      const seaP = player.sp;
-      const carP = player.c;
-      const seaGB = player.sgb;
-      const carGB = player.cgb;
-      const seaSV = player.ssv;
-      const carSV = player.csv;
-      const one = player.one;
-      const draft = player.draft;
-      const tall = player.tall;
-      const short = player.short;
-      const lefty = player.lefty;
-      const position = player.position;
-      const college = player.college;
-      const country = player.country;
-      const picture = player.picture;
       const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
-
-      const info = [teams, year, seaP, carP, seaGB, carGB, seaSV, carSV, one, draft, tall, short, lefty, position, college, country, picture,link];
-
-      p[name] = info;
+      const info = [player.teams, player.year, player.sp, player.cp, player.sgb, player.cgb, player.ssv, player.csv, player.one, player.draft, player.tall, player.short, player.lefty, player.position, player.college, player.country, player.picture,link];
+      p[player.name] = info;
     });
-    
     setPlayers(p)
 
-    generate();
+    generate(p);
+
     let list = [];
     let desc =[];
     let f = [];
@@ -697,12 +656,15 @@ function App() {
       l.push(undefined)
       a.push(undefined)
       for (let j = 0; j < 3; j++) {
-        l.push(bigCheck(left[i],top[j]).length)
-        a.push(bigCheck(left[i],top[j]))
+        //console.log("bigCheck")
+        l.push(bigCheck(p,left[i],top[j]).length)
+        a.push(bigCheck(p,left[i],top[j]))
       }
     } 
     setLengths(l)
     setArrays(a)
+   // console.log(l)
+
 
   }, []);
 
@@ -715,7 +677,7 @@ function App() {
     setSelectedImage(null);
     setGuesses(guesses-1);
 
-    if(check(newValue.label,left[Math.floor(selectedBox/4)-1],top[(selectedBox%4)-1]))
+    if(check(players,newValue.label,left[Math.floor(selectedBox/4)-1],top[(selectedBox%4)-1]))
     {
       clickable[selectedBox] = true;
       playerName[selectedBox] = newValue.label;
@@ -770,7 +732,7 @@ function App() {
           >
             {/* Title with button to the right */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
-              <Typography fontSize='15px'>PLL Immaculate Grid</Typography>
+              <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Button variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
               </Button>
@@ -860,11 +822,7 @@ function App() {
                           position: 'relative', // Ensure the inner elements can be positioned relative to this Box
                           borderRadius: '0px',
                         }}
-                        inputProps={{
-                          style: {
-                            textAlign: 'center',
-                          },
-                        }}
+                        
                       >
                         <Box
                           sx={{
@@ -910,11 +868,7 @@ function App() {
                           position: 'relative', // Ensure the inner elements can be positioned relative to this Box
                           borderRadius: '0px',
                         }}
-                        inputProps={{
-                          style: {
-                            textAlign: 'center',
-                          },
-                        }}
+                       
                       >
                         {buttonTexts[index]}
                         <Box
@@ -960,11 +914,7 @@ function App() {
                           border: '1px solid gray', // Ensure consistent border
                           borderRadius: '0px',
                         }}
-                        inputProps={{
-                          style: {
-                            textAlign: 'center',
-                          },
-                        }}
+                       
                         />
                     )}
                     
@@ -1090,8 +1040,8 @@ function App() {
               
             )}
             <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Tap on a logo or category for help</Typography>
-            <Typography fontSize='12px' marginTop="-10px">Tap "NEW GAME" on first load to work correctly</Typography>
-            <Typography fontSize='10px' marginTop="-10px">MLL-only players do not have college/position/country/height data<br></br>Player must have finished a season with PLL/MLL team to qualify<br></br> Player must have finished NCAA career with team to qualify</Typography>
+            <Typography fontSize='12px' marginTop="-5px">Important:</Typography>
+            <Typography fontSize='10px' marginTop="-15px">*MLL-only players don't have college/position/country/height data<br></br>*Player must have finished a season with PLL/MLL team to qualify<br></br>*Player must have finished NCAA career with team to qualify</Typography>
     
 
           </Box>
