@@ -225,13 +225,13 @@ const category = {
   "30GB": {
     text: "30 GB SEASON",
     image: "",
-    description: "Player has recorded 30 ground balls in a single season. When paired with a team, does not need to be in the same season"
+    description: "Player has recorded 30 groundballs in a single season. When paired with a team, does not need to be in the same season"
 
   },
   "300GB": {
     text: "300 GB CAREER",
     image: "",
-    description: "Player has recorded 300 ground balls in his career"
+    description: "Player has recorded 300 groundballs in his career"
 
   },
 
