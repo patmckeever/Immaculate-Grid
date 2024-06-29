@@ -7,6 +7,10 @@ import data from './players.json';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import styled from 'styled-components';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+
 
 let gridCount = 1
 
@@ -372,6 +376,10 @@ let top = [];
 
 const squareSize = 80; // Size of each square
 
+// copy text snackbar alert
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});  
 
 
 function App() {
@@ -635,6 +643,7 @@ function App() {
     let text = [];
     let name = [];
     let over = []
+    let checks = []
     for (let i = 0; i < 16; i++) {   
       list.push(determineButtonText(i));
       if(determineButtonText(i) !== undefined) desc.push(category[determineButtonText(i)].description)
@@ -643,6 +652,7 @@ function App() {
       text.push("");
       name.push("");
       over.push(false)
+      checks.push(undefined)
     }
     setTexts(list);
     setDesc(desc)
@@ -651,6 +661,7 @@ function App() {
     setUnClickable(f);
     setOver(over)
     handleClickAway();
+    setCheckArray(checks)
 
     let l = []
     let a = []
@@ -683,6 +694,7 @@ function App() {
     setSelectedBox(null);
     setSelectedImage(null);
     setGuesses(guesses-1);
+    let jawn = checkArray;
 
     if(check(players,newValue.label,left[Math.floor(selectedBox/4)-1],top[(selectedBox%4)-1]))
     {
@@ -693,7 +705,10 @@ function App() {
       setPlayerName(playerName);
       setUnClickable(clickable);
       setScore(score+1)
+      jawn[selectedBox] = 1
+      setCheckArray(jawn)
     }
+   // console.log(jawn)
     handleClickAway();
 
   };
@@ -720,6 +735,37 @@ function App() {
   const nothing = () => {
   };
   
+  const [open, setOpen] = useState(false);
+  const [alertText, setAlertText] = useState('');
+  const [textToCopy, setCopyText] = useState('');
+  const [checkArray, setCheckArray] = useState(Array.from({ length: 16 }));
+
+  const handleClick = async () => {
+
+    let string = ""
+    for (let i = 0; i < 16; i++) { 
+      if (i < 5 || i === 8 || i === 12) continue
+      if (checkArray[i] === 1) string += "🟩"
+      else string += "⬜️"
+      if(i === 7 || i === 11) string += "\n"
+    }
+    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ":\n" + score + "-9\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
+    
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      setAlertText('Copied to clipboard!');
+    } catch (err) {
+      setAlertText('Failed to copy!');
+    }
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   
 
   return (
@@ -1013,19 +1059,39 @@ function App() {
 
             ) : !isOver[5] ? (
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginTop: 2 }}>
                 <Typography fontSize='15px'>Your Score:</Typography>
-                <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-10px' marginRight='10px'>{score}-9</Typography>
-                <Button variant="contained" color="primary" onClick={gameOver}>
+                <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-5px' marginRight='5px'>{score}-9</Typography>
+                <div>
+                  <Button variant="contained" onClick={handleClick} size="small" sx={{ fontSize: '10px' }}>
+                    Copy
+                  </Button>
+                  <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity={alertText === 'Copied to clipboard!' ? 'success' : 'error'}>
+                      {alertText}
+                    </Alert>
+                  </Snackbar>
+                </div>
+                <Button variant="contained" color="primary" size="small" sx={{ fontSize: '10px' }} onClick={gameOver}>
                   SHOW SUMMARY
                 </Button>
               </Box>
 
             ) : (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, marginTop: 2 }}>
                 <Typography fontSize='15px'>Your Score:</Typography>
-                <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-10px' marginRight='10px'>{score}-9</Typography>
-                <Button variant="contained" color="primary" onClick={gameOver}>
+                <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-5px' marginRight='5px'>{score}-9</Typography>
+                <div>
+                  <Button variant="contained" onClick={handleClick} size="small" sx={{ fontSize: '10px' }}>
+                    Copy
+                  </Button>
+                  <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity={alertText === 'Copied to clipboard!' ? 'success' : 'error'}>
+                      {alertText}
+                    </Alert>
+                  </Snackbar>
+                </div>
+                <Button variant="contained" color="primary" size="small" sx={{ fontSize: '10px' }} onClick={gameOver}>
                   SHOW GRID
                 </Button>
               </Box>
