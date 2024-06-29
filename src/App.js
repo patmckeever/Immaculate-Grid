@@ -466,9 +466,9 @@ function App() {
         }
       }*/
 
-      left = ["Atlas","Waterdogs","Chaos"]
-      top = ["Cannons","CAN","500SV"]
-      gridCount = 1
+      left = ["Archers","Redwoods","Whipsnakes"]
+      top = ["Outlaws","Lizards","Duke"]
+      gridCount = 2
     };
 
 
