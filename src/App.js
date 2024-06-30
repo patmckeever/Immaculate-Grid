@@ -473,10 +473,10 @@ function App() {
             break;
         }
       }*/
-
-      left = ["Archers","Redwoods","Whipsnakes"]
-      top = ["Outlaws","Lizards","Duke"]
-      gridCount = 2
+      
+      left = ["Whipsnakes","Cannons","Archers"]
+      top = ["Hounds","Virginia","Launch"]
+      gridCount = 3
     };
 
 
