@@ -12,7 +12,9 @@ import MuiAlert from '@mui/material/Alert';
 
 
 
-let gridCount = 1
+
+
+let gridCount = '1'
 
 const list = [];
 data.forEach(player => {
@@ -473,10 +475,14 @@ function App() {
             break;
         }
       }*/
+
+  
+          
       
-      left = ["Whipsnakes","Cannons","Archers"]
-      top = ["Hounds","Virginia","Launch"]
-      gridCount = 3
+        
+      left = ["Chaos","Redwoods","Atlas"]
+      top = ["IRQ","Waterdogs","LSM"]
+      gridCount = 4
     };
 
 
