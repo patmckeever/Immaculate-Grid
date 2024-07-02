@@ -475,14 +475,10 @@ function App() {
             break;
         }
       }*/
-
-  
-          
-      
         
-      left = ["Chaos","Redwoods","Atlas"]
-      top = ["IRQ","Waterdogs","LSM"]
-      gridCount = 4
+      left = ["Atlas","Archers","Waterdogs"]
+      top = ["Chaos","Johns Hopkins","300GB"]
+      gridCount = 5
     };
 
 
@@ -799,7 +795,7 @@ function App() {
             </Box>*/}
             
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
-              <Typography fontSize='12px'> Immaculate Grid (BETA)</Typography>
+              <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Typography variant="contained">
                 #{gridCount}
               </Typography>
