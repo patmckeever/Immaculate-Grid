@@ -11,7 +11,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
 import ReactGA from "react-ga4";
-ReactGA.initialize(" G-HYTBWB2736");
+ReactGA.initialize("G-HYTBWB2736");
 ReactGA.send({ hitType: "pageview", page: "/Immaculate-Grid/", title: "main" });
 
 
