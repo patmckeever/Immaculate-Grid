@@ -1031,7 +1031,7 @@ function App() {
             )}
             <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Tap on a logo or category for help</Typography>
             <Typography fontSize='12px' marginTop="-5px">Important:</Typography>
-            <Typography fontSize='10px' marginTop="-15px">*MLL-only players don't have college/position/country/height data<br></br>*Player must have finished a season with PLL/MLL team to qualify<br></br>*Player must have finished NCAA career with team to qualify</Typography>
+            <Typography fontSize='10px' marginTop="-15px">*Data from 2019 MLL season is currently unavailable<br></br>*MLL-only players don't have college/position/country/height data<br></br>*Player must have finished a season with PLL/MLL team to qualify<br></br>*Player must have finished NCAA career with team to qualify</Typography>
     
 
           </Box>
