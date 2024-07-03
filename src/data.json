@@ -1,0 +1,26 @@
+{
+  "data": {
+    "left": [
+      "Atlas",
+      "Archers",
+      "Waterdogs"
+    ],
+    "top": [
+      "Chaos",
+      "Johns Hopkins",
+      "300GB"
+    ],
+    "gridCount": 5,
+    "lengths": [
+      15,
+      11,
+      11,
+      16,
+      8,
+      10,
+      12,
+      8,
+      9
+    ]
+  }
+}

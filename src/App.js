@@ -10,11 +10,11 @@ import styled from 'styled-components';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+let json = require('./data.json');
+const gridCount = json.data.gridCount
+const left = json.data.left
+const top = json.data.top
 
-
-
-
-let gridCount = '1'
 
 const list = [];
 data.forEach(player => {
@@ -373,8 +373,7 @@ const theme = createTheme({
     },
   },
 });
-let left = [];
-let top = [];
+
 
 const squareSize = 80; // Size of each square
 
@@ -392,30 +391,18 @@ function App() {
   const check = (players,name, cat1, cat2) => {
     let c1 = false;
     let c2 = false;
-    if (players[name].includes(cat1)) {
-        c1 = true;
-     
-    }
-    if (players[name][0].split(", ").includes(cat1)) {
-      c1 = true;
-    
-    }
-    if (players[name].includes(cat2)) {
-      c2 = true;
-     
-    }
-    if (players[name][0].split(", ").includes(cat2)) {
-      c2 = true;
-   
-    }
+
+    if (players[name].includes(cat1)) c1 = true;
+    if (players[name][0].split(", ").includes(cat1)) c1 = true;
+
+    if (players[name].includes(cat2)) c2 = true;
+    if (players[name][0].split(", ").includes(cat2))  c2 = true;
 
     return c1 && c2;
   };
 
   const bigCheck = (players, cat1, cat2) => {
-   // console.log("IN HERE: "+ cat1+" + "+cat2)
     const list = [];
-  //  console.log("Checking: "+players["Paul Rabil"])
     Object.keys(players).forEach(player => {
       
       if (check(players,player, cat1, cat2)) {
@@ -423,92 +410,12 @@ function App() {
         list.push(player);
       }
     });
-   // console.log(list)
     return list;
   };
 
-  const generate = (p) => {
-    top = []
-    left = []
-    
-    // Function to generate categories
-    const genCats = () => {
-      /*
-      let pllCats = ["Atlas", "Archers", "Cannons", "Chaos", "Outlaws", "Redwoods", "Waterdogs", "Whipsnakes"];
-      let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse","USA", "CAN", "IRQ"];
-      let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One","A","M","FO","SSDM","LSM","D","G"];
-      let mllCats = ["Dragons", "Riptide", "Bayhawks", "Lizards", "Hounds", "Pride", "Rattlers", "Launch", "Blaze", "Machine", "Nationals", "Hammerheads", "Chrome", "Barrage"];
-
-      
-      for (let i = 0; i < 3; i++) {
-        let cat = ""
-        cat = pllCats[Math.floor(Math.random() * pllCats.length)]
-        left.push(cat);
-        pllCats = pllCats.filter(item => item !== cat);
-      }
-
-      for (let i = 0; i < 3; i++) {
-        let cat = ""
-        const topic = ['pll', 'colleges', 'stats', 'mll'][Math.floor(Math.random() * 4)];
-        switch (topic) {
-          case 'pll':
-            cat = pllCats[Math.floor(Math.random() * pllCats.length)];
-            top.push(cat);
-            pllCats = pllCats.filter(item => item !== cat)
-            break;
-          case 'colleges':
-            cat = collcats[Math.floor(Math.random() * collcats.length)];
-            top.push(cat);
-            collcats = collcats.filter(item => item !== cat)
-            break;
-          case 'stats':
-            cat = statcats[Math.floor(Math.random() * statcats.length)];
-            top.push(cat);
-            statcats = statcats.filter(item => item !== cat)
-            break;
-          case 'mll':
-            cat = mllCats[Math.floor(Math.random() * mllCats.length)];
-            top.push(cat);
-            mllCats = mllCats.filter(item => item !== cat)
-            break;
-          default:
-            break;
-        }
-      }*/
-        
-      left = ["Atlas","Archers","Waterdogs"]
-      top = ["Chaos","Johns Hopkins","300GB"]
-      gridCount = 5
-    };
-
-
-    
-
-    genCats();
-
-  
-    
+  const generate = (p) => { 
     setGuesses(9);
     setScore(0);
-
-
-
-    
-    
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if(bigCheck(p,left[i],top[j]).length<1)
-        {
-         //console.log("Redoing: " + left[i] + " + " + top[j] + " length is "+ bigCheck(p,left[i],top[j]).length +", count: " + count)
-            count++
-            if(count<1000) generate(p);
-            
-            return;
-        }
-      }
-    }
-    count = 0 
-
   };
   
 
@@ -547,9 +454,6 @@ function App() {
     else if(isLeftRow)  return left[(index/4) -1];
     else return undefined
   };
-  
-
-  
   
   const handleBoxClick = (index) => {
     setSelectedBox(index);
@@ -675,14 +579,12 @@ function App() {
       l.push(undefined)
       a.push(undefined)
       for (let j = 0; j < 3; j++) {
-        //console.log("bigCheck")
         l.push(bigCheck(p,left[i],top[j]).length)
         a.push(bigCheck(p,left[i],top[j]))
       }
     } 
     setLengths(l)
     setArrays(a)
-   // console.log(l)
 
 
 

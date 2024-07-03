@@ -1,0 +1,115 @@
+// Function to generate categories
+const fs = require('fs');
+let json = require('./src/data.json');
+let playerData =  require('./src/players.json');
+
+let p = {};
+playerData.forEach(player => {
+    const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
+    const info = [player.teams, player.year, player.sp, player.cp, player.sgb, player.cgb, player.ssv, player.csv, player.one, player.draft, player.tall, player.short, player.lefty, player.position, player.college, player.country, player.picture,link];
+    p[player.name] = info;
+});
+
+const check = (players,name, cat1, cat2) => {
+    let c1 = false;
+    let c2 = false;
+
+    if (players[name].includes(cat1)) c1 = true;
+    if (players[name][0].split(", ").includes(cat1)) c1 = true;
+
+    if (players[name].includes(cat2)) c2 = true;
+    if (players[name][0].split(", ").includes(cat2))  c2 = true;
+
+    return c1 && c2;
+};
+
+const bigCheck = (players, cat1, cat2) => {
+     const list = [];
+     Object.keys(players).forEach(player => {
+       if (check(players,player, cat1, cat2)) {
+         list.push(player);
+       }
+     });
+     return list;
+   };
+
+let left = []
+let top = []
+let gridCount = json.data.gridCount
+let count = 0;
+
+const generate = () => {
+
+    left = []
+    top = []
+
+    let pllCats = ["Atlas", "Archers", "Cannons", "Chaos", "Outlaws", "Redwoods", "Waterdogs", "Whipsnakes"];
+    let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse","USA", "CAN", "IRQ"];
+    //let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One","A","M","FO","SSDM","LSM","D","G"];
+    let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One"];
+    let mllCats = ["Dragons", "Riptide", "Bayhawks", "Lizards", "Hounds", "Pride", "Rattlers", "Launch", "Blaze", "Machine", "Nationals", "Hammerheads", "Chrome", "Barrage"];
+
+
+    for (let i = 0; i < 3; i++) {
+        let cat = ""
+        cat = pllCats[Math.floor(Math.random() * pllCats.length)]
+        left.push(cat);
+        pllCats = pllCats.filter(item => item !== cat);
+    }
+
+    for (let i = 0; i < 3; i++) {
+        let cat = ""
+        const topic = ['pll', 'colleges', 'stats', 'mll'][Math.floor(Math.random() * 4)];
+        switch (topic) {
+        case 'pll':
+            cat = pllCats[Math.floor(Math.random() * pllCats.length)];
+            top.push(cat);
+            pllCats = pllCats.filter(item => item !== cat)
+            break;
+        case 'colleges':
+            cat = collcats[Math.floor(Math.random() * collcats.length)];
+            top.push(cat);
+            collcats = collcats.filter(item => item !== cat)
+            break;
+        case 'stats':
+            cat = statcats[Math.floor(Math.random() * statcats.length)];
+            top.push(cat);
+            statcats = statcats.filter(item => item !== cat)
+            break;
+        case 'mll':
+            cat = mllCats[Math.floor(Math.random() * mllCats.length)];
+            top.push(cat);
+            mllCats = mllCats.filter(item => item !== cat)
+            break;
+        default:
+            break;
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if(bigCheck(p,left[i],top[j]).length<1)
+            {
+                count++
+                if(count<1000) generate(); 
+                return;
+            }
+        }
+    }
+    count = 0 
+};
+
+generate()
+
+json.data.left = left
+json.data.top = top
+json.data.gridCount = gridCount+1
+json.data.lengths = [bigCheck(p,left[0],top[0]).length,bigCheck(p,left[0],top[1]).length,bigCheck(p,left[0],top[2]).length,bigCheck(p,left[1],top[0]).length,bigCheck(p,left[1],top[1]).length,bigCheck(p,left[1],top[2]).length,bigCheck(p,left[2],top[0]).length,bigCheck(p,left[2],top[1]).length,bigCheck(p,left[2],top[2]).length]
+
+// Write back to the JSON file
+fs.writeFile('./src/data.json', JSON.stringify(json, null, 2), (err) => {
+    if (err) {
+    console.error('Error writing file:', err);
+    return;
+    }
+});
