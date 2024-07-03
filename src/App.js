@@ -10,6 +10,11 @@ import styled from 'styled-components';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+import ReactGA from "react-ga4";
+ReactGA.initialize(" G-HYTBWB2736");
+ReactGA.send({ hitType: "pageview", page: "/Immaculate-Grid/", title: "main" });
+
+
 let json = require('./data.json');
 const gridCount = json.data.gridCount
 const left = json.data.left
