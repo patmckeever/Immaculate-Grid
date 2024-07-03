@@ -1,26 +1,26 @@
 {
   "data": {
     "left": [
-      "Atlas",
-      "Archers",
-      "Waterdogs"
+      "Redwoods",
+      "Cannons",
+      "Chaos"
     ],
     "top": [
-      "Chaos",
-      "Johns Hopkins",
-      "300GB"
+      "Rattlers",
+      "Outlaws",
+      "200P"    
     ],
-    "gridCount": 5,
+    "gridCount": 6,
     "lengths": [
-      15,
-      11,
-      11,
-      16,
-      8,
-      10,
+      7,
+      5,
       12,
-      8,
-      9
+      39,
+      16,
+      29,
+      6,
+      4,
+      8
     ]
   }
 }
