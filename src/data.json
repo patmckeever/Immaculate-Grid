@@ -1,26 +1,26 @@
 {
   "data": {
     "left": [
-      "Redwoods",
-      "Whipsnakes",
-      "Archers"
+      "Atlas",
+      "Chaos",
+      "Waterdogs"
     ],
     "top": [
-      "Waterdogs",
-      "Machine",
-      "500SV"
+      "Chrome",
+      "Blaze",
+      "Nationals"
     ],
-    "gridCount": 8,
+    "gridCount": 9,
     "lengths": [
+      9,
+      10,
+      3,
+      8,
+      8,
+      3,
+      10,
       4,
-      1,
-      5,
-      5,
-      2,
-      7,
-      5,
-      2,
-      10
+      3
     ]
   }
 }
