@@ -1,26 +1,26 @@
 {
   "data": {
     "left": [
-      "Waterdogs",
       "Cannons",
-      "Redwoods"
+      "Chaos",
+      "Atlas"
     ],
     "top": [
-      "Archers",
-      "Denver",
-      "One"
+      "Waterdogs",
+      "Lefty",
+      "30P"
     ],
-    "gridCount": 10,
+    "gridCount": 11,
     "lengths": [
-      5,
+      15,
+      8,
+      4,
+      11,
+      4,
+      6,
+      13,
       2,
-      8,
-      12,
-      8,
-      12,
-      1,
-      1,
-      4
+      7
     ]
   }
 }
