@@ -28,16 +28,81 @@
     },
     "7/10/2024": {
       "left": [
-        "Atlas",
         "Outlaws",
+        "Redwoods",
+        "Chrome"
+      ],
+      "top": [
+        "Atlas",
+        "CAN",
+        "TALL"
+      ],
+      "gridCount": 13
+    },
+    "7/11/2024": {
+      "left": [
+        "Chaos",
+        "Cannons",
+        "Outlaws"
+      ],
+      "top": [
+        "Bayhawks",
+        "30P",
+        "300GB"
+      ],
+      "gridCount": 14
+    },
+    "7/12/2024": {
+      "left": [
+        "Redwoods",
+        "Waterdogs",
         "Archers"
       ],
       "top": [
-        "300GB",
-        "One",
-        "100SV"
+        "Cannons",
+        "Outlaws",
+        "Atlas"
       ],
-      "gridCount": 13
+      "gridCount": 15
+    },
+    "7/13/2024": {
+      "left": [
+        "Atlas",
+        "Chaos",
+        "Redwoods"
+      ],
+      "top": [
+        "Duke",
+        "Notre Dame",
+        "Virginia"
+      ],
+      "gridCount": 16
+    },
+    "7/14/2024": {
+      "left": [
+        "Outlaws",
+        "Waterdogs",
+        "Redwoods"
+      ],
+      "top": [
+        "Chaos",
+        "Blaze",
+        "200P"
+      ],
+      "gridCount": 17
+    },
+    "7/15/2024": {
+      "left": [
+        "Waterdogs",
+        "Redwoods",
+        "Cannons"
+      ],
+      "top": [
+        "Atlas",
+        "Lizards",
+        "Launch"
+      ],
+      "gridCount": 18
     }
   }
 }
