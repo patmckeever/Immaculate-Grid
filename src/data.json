@@ -1,26 +1,43 @@
 {
   "data": {
-    "left": [
-      "Cannons",
-      "Chaos",
-      "Atlas"
-    ],
-    "top": [
-      "Waterdogs",
-      "Lefty",
-      "30P"
-    ],
-    "gridCount": 11,
-    "lengths": [
-      15,
-      8,
-      4,
-      11,
-      4,
-      6,
-      13,
-      2,
-      7
-    ]
+    "7/8/2024": {
+      "left": [
+        "Cannons",
+        "Chaos",
+        "Atlas"
+      ],
+      "top": [
+        "Waterdogs",
+        "Lefty",
+        "30P"
+      ],
+      "gridCount": 11
+    },
+    "7/9/2024": {
+      "left": [
+        "Redwoods",
+        "Archers",
+        "Atlas"
+      ],
+      "top": [
+        "Whipsnakes",
+        "Duke",
+        "30GB"
+      ],
+      "gridCount": 12
+    },
+    "7/10/2024": {
+      "left": [
+        "Atlas",
+        "Outlaws",
+        "Archers"
+      ],
+      "top": [
+        "300GB",
+        "One",
+        "100SV"
+      ],
+      "gridCount": 13
+    }
   }
 }

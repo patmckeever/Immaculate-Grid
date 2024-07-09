@@ -10,15 +10,21 @@ import styled from 'styled-components';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+
 import ReactGA from "react-ga4";
 ReactGA.initialize("G-HYTBWB2736");
 ReactGA.send({ hitType: "pageview", page: "/Immaculate-Grid/", title: "main" });
 
 
 let json = require('./data.json');
+/*
 const gridCount = json.data.gridCount
 const left = json.data.left
 const top = json.data.top
+*/
+let gridCount = ""
+let left = ""
+let top = ""
 
 
 const list = [];
@@ -537,6 +543,16 @@ function App() {
     
   };
   useEffect(() => {
+
+
+    const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
+    const date = formatter.format(new Date())
+   //const date = "7/9/2024"
+    console.log(date)
+    gridCount = json.data[date].gridCount
+    left = json.data[date].left
+    top = json.data[date].top
+
     let p = {}; // Object to store player data
 
     data.forEach(player => {

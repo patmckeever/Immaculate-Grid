@@ -3,6 +3,9 @@ const fs = require('fs');
 let json = require('./src/data.json');
 let playerData =  require('./src/players.json');
 
+const prevDate = '7/8/2024'
+const date = '7/9/2024'
+
 let p = {};
 playerData.forEach(player => {
     const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
@@ -35,7 +38,7 @@ const bigCheck = (players, cat1, cat2) => {
 
 let left = []
 let top = []
-let gridCount = json.data.gridCount
+let gridCount = json.data[prevDate].gridCount
 let count = 0;
 
 const generate = () => {
@@ -99,12 +102,13 @@ const generate = () => {
     count = 0 
 };
 
-generate()
 
-json.data.left = left
-json.data.top = top
-json.data.gridCount = gridCount+1
-json.data.lengths = [bigCheck(p,left[0],top[0]).length,bigCheck(p,left[0],top[1]).length,bigCheck(p,left[0],top[2]).length,bigCheck(p,left[1],top[0]).length,bigCheck(p,left[1],top[1]).length,bigCheck(p,left[1],top[2]).length,bigCheck(p,left[2],top[0]).length,bigCheck(p,left[2],top[1]).length,bigCheck(p,left[2],top[2]).length]
+generate()
+json.data[date] = {
+    "left": left,
+    "top": top,
+    "gridCount": gridCount+1
+}
 
 // Write back to the JSON file
 fs.writeFile('./src/data.json', JSON.stringify(json, null, 2), (err) => {
