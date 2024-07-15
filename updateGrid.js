@@ -1,17 +1,17 @@
 // Function to generate categories
 const fs = require('fs');
 let json = require('./src/data.json');
-let playerData =  require('./src/players.json');
+let data =  require('./src/players.json');
 
-const prevDate = '7/14/2024'
-const date = '7/15/2024'
+const prevDate = '7/21/2024'
+const date = '7/22/2024'
 
 let p = {};
-playerData.forEach(player => {
-    const link = 'https://premierlacrosseleague.com/player/' + player.name.replace(" ","-");
-    const info = [player.teams, player.year, player.sp, player.cp, player.sgb, player.cgb, player.ssv, player.csv, player.one, player.draft, player.tall, player.short, player.lefty, player.position, player.college, player.country, player.picture,link];
-    p[player.name] = info;
-});
+for (let name in data) {
+    const link = 'https://premierlacrosseleague.com/player/' + name.replace(" ","-");
+    const info = [data[name].team, data[name].year, data[name].sp, data[name].cp, data[name].sgb, data[name].cgb, data[name].ssv, data[name].csv, data[name].one, data[name].draft, data[name].tall, data[name].short, data[name].lefty, data[name].position, data[name].college, data[name].country, data[name].picture,link];
+    p[name] = info;
+  }
 
 const check = (players,name, cat1, cat2) => {
     let c1 = false;

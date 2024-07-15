@@ -103,6 +103,97 @@
         "Launch"
       ],
       "gridCount": 18
+    },
+    "7/16/2024": {
+      "left": [
+        "Cannons",
+        "Chaos",
+        "Waterdogs"
+      ],
+      "top": [
+        "Archers",
+        "Hounds",
+        "200P"
+      ],
+      "gridCount": 19
+    },
+    "7/17/2024": {
+      "left": [
+        "Redwoods",
+        "Outlaws",
+        "Atlas"
+      ],
+      "top": [
+        "Cannons",
+        "Denver",
+        "500SV"
+      ],
+      "gridCount": 20
+    },
+    "7/18/2024": {
+      "left": [
+        "Cannons",
+        "Outlaws",
+        "Waterdogs"
+      ],
+      "top": [
+        "Chaos",
+        "Redwoods",
+        "Barrage"
+      ],
+      "gridCount": 21
+    },
+    "7/19/2024": {
+      "left": [
+        "Archers",
+        "Outlaws",
+        "Redwoods"
+      ],
+      "top": [
+        "100SV",
+        "SHORT",
+        "TALL"
+      ],
+      "gridCount": 22
+    },
+    "7/20/2024": {
+      "left": [
+        "Redwoods",
+        "Whipsnakes",
+        "Cannons"
+      ],
+      "top": [
+        "Syracuse",
+        "Maryland",
+        "30GB"
+      ],
+      "gridCount": 23
+    },
+    "7/21/2024": {
+      "left": [
+        "Redwoods",
+        "Archers",
+        "Cannons"
+      ],
+      "top": [
+        "Outlaws",
+        "Whipsnakes",
+        "CAN"
+      ],
+      "gridCount": 24
+    },
+    "7/22/2024": {
+      "left": [
+        "Waterdogs",
+        "Atlas",
+        "Cannons"
+      ],
+      "top": [
+        "Duke",
+        "Johns Hopkins",
+        "Lefty"
+      ],
+      "gridCount": 25
     }
   }
 }
