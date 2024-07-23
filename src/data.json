@@ -194,6 +194,97 @@
         "Lefty"
       ],
       "gridCount": 25
+    },
+    "7/23/2024": {
+      "left": [
+        "Archers",
+        "Cannons",
+        "Chaos"
+      ],
+      "top": [
+        "Outlaws",
+        "Duke",
+        "CAN"
+      ],
+      "gridCount": 26
+    },
+    "7/24/2024": {
+      "left": [
+        "Cannons",
+        "Redwoods",
+        "Waterdogs"
+      ],
+      "top": [
+        "Archers",
+        "30GB",
+        "500SV"
+      ],
+      "gridCount": 27
+    },
+    "7/25/2024": {
+      "left": [
+        "Chaos",
+        "Archers",
+        "Atlas"
+      ],
+      "top": [
+        "Bayhawks",
+        "100SV",
+        "TALL"
+      ],
+      "gridCount": 28
+    },
+    "7/26/2024": {
+      "left": [
+        "Archers",
+        "Waterdogs",
+        "Cannons"
+      ],
+      "top": [
+        "Chaos",
+        "Machine",
+        "CAN"
+      ],
+      "gridCount": 29
+    },
+    "7/27/2024": {
+      "left": [
+        "Redwoods",
+        "Outlaws",
+        "Archers"
+      ],
+      "top": [
+        "Whipsnakes",
+        "Bayhawks",
+        "Johns Hopkins"
+      ],
+      "gridCount": 30
+    },
+    "7/28/2024": {
+      "left": [
+        "Archers",
+        "Waterdogs",
+        "Redwoods"
+      ],
+      "top": [
+        "Outlaws",
+        "Atlas",
+        "USA"
+      ],
+      "gridCount": 31
+    },
+    "7/29/2024": {
+      "left": [
+        "Cannons",
+        "Waterdogs",
+        "Archers"
+      ],
+      "top": [
+        "Chrome",
+        "Lizards",
+        "200P"
+      ],
+      "gridCount": 32
     }
   }
 }

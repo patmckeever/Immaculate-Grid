@@ -3,8 +3,8 @@ const fs = require('fs');
 let json = require('./src/data.json');
 let data =  require('./src/players.json');
 
-const prevDate = '7/21/2024'
-const date = '7/22/2024'
+const prevDate = '7/28/2024'
+const date = '7/29/2024'
 
 let p = {};
 for (let name in data) {
