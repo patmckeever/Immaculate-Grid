@@ -825,7 +825,7 @@ function Unlimited() {
             }}
           >
             {/* Title with button to the right */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '75px' }}>
               <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Button style={{fontSize:'10px'}} variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
@@ -1154,10 +1154,10 @@ function Unlimited() {
                     <Box height={"10px"}></Box>
                     {arrays[selectedSum].map((text, index) => (
                       <span key={index} style={{ display: 'flex',alignItems: 'center'}}>
-                        <p  style={{color:'lightgray', textAlign: 'left',fontSize:"15px", marginRight: '5px'}}>{index+1}. </p>
-                        <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"15px" }}>{text} </a>
-                        <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"10px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
-                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "8px", color: 'lightgray' }}>
+                        <p  style={{color:'lightgray', textAlign: 'left',fontSize:"12px", marginRight: '5px'}}>{index+1}. </p>
+                        <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"12px" }}>{text} </a>
+                        <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"8px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
+                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "12px", color: 'lightgray' }}>
                         { ((PlayerData[text] != undefined) && (PlayerData[text].count != undefined) && (PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) >= 0)) ? (Math.round((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] / CategoryData[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]]['total']) * 10000)/100) + "%" : ((PlayerData[text] != undefined) && (PlayerData[text].count != undefined) && (PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0)) ? (Math.round((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] / CategoryData[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]]['total']) * 10000)/100) + "%" : "0%" }
                         </p>
                       </span>

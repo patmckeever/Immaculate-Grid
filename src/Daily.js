@@ -25,6 +25,7 @@ let gridCount = ""
 let left = ""
 let top = ""
 let key = ""
+let date = ""
 
 
 const list = [];
@@ -401,7 +402,7 @@ function Daily() {
 
   const [PlayerData, setPlayerData] = useState([]);
   const [CategoryData, setCategoryData] = useState([]);
-
+  const [DailyData, setDailyData] = useState([]);
   
   const fetchData = async () => {
     try {
@@ -431,6 +432,21 @@ function Daily() {
       console.error('Error fetching data:', error);
     }
   };   
+  const fetchDailyData = async () => {
+    try {
+      const snapshot = await firestore.collection('daily').get();
+      const fetchedData = {};
+      snapshot.forEach(doc => {
+        fetchedData[doc.id] = {
+          ...doc.data()
+        };
+      });
+      setDailyData(fetchedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };  
+
   const updateData = async (PlayerName, newPlayerData) => {
     try {
       await firestore.collection('players').doc(PlayerName).update(newPlayerData);
@@ -447,6 +463,16 @@ function Daily() {
       console.log('Data updated or added successfully');
       // Optionally, fetch updated data again
       fetchCategoryData();
+    } catch (error) {
+      console.error('Error updating or adding data:', error);
+    }
+  };
+  const updateDailyData = async (DailyName, newDailyData) => {
+    try {
+      await firestore.collection('daily').doc(DailyName).set(newDailyData, { merge: true });
+      console.log(DailyName +' Data updated or added successfully');
+      // Optionally, fetch updated data again
+      fetchDailyData();
     } catch (error) {
       console.error('Error updating or adding data:', error);
     }
@@ -605,9 +631,10 @@ function Daily() {
 
    fetchData()
    fetchCategoryData()
+   fetchDailyData()
 
     const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
-    const date = formatter.format(new Date())
+    date = formatter.format(new Date())
     //const date = "7/26/2024"
     console.log(date)
     gridCount = json.data[date].gridCount
@@ -683,6 +710,9 @@ function Daily() {
     setGuesses(guesses-1);
     let jawn = checkArray;
 
+    let newScore = score
+    let newRarity = rarity
+
     if(check(players,newValue.label,left[Math.floor(selectedBox/4)-1],top[(selectedBox%4)-1]))
     {
       clickable[selectedBox] = true;
@@ -692,6 +722,7 @@ function Daily() {
       setPlayerName(playerName);
       setUnClickable(clickable);
       setScore(score+1)
+      newScore += 1
       jawn[selectedBox] = 1
       setCheckArray(jawn)
       
@@ -707,9 +738,30 @@ function Daily() {
       updateData(playerName[selectedBox],{ count: PlayerData[playerName[selectedBox]].count })
       updateCategoryData(key,CategoryData[key])
       
-      setRarity(rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*10000))/100)))
+      setRarity(rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*1000))/10)))
+      newRarity = rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*1000))/10))
 
+      if(DailyData[selectedBox][date] === undefined) DailyData[selectedBox][date] = 1
+      else DailyData[selectedBox+""][date] += 1
+      updateDailyData(selectedBox+"",DailyData[selectedBox+""])
     }
+
+    if((guesses-1) === 0)
+    {
+      if(DailyData["total"][date] === undefined) DailyData["total"][date] = 1
+      else DailyData["total"][date] += 1
+      updateDailyData("total",DailyData["total"])
+
+      if(DailyData["score"][date] === undefined) DailyData["score"][date] = newScore
+      else DailyData["score"][date] += newScore
+      updateDailyData("score",DailyData["score"])
+
+      if(DailyData["rarity"][date] === undefined) DailyData["rarity"][date] = newRarity 
+      else DailyData["rarity"][date] += newRarity
+      updateDailyData("rarity",DailyData["rarity"])
+    }
+    
+
     handleClickAway();
   };
 
@@ -729,6 +781,19 @@ function Daily() {
 
   const giveUp = () => {
     setGuesses(0)
+
+    if(DailyData["total"][date] === undefined) DailyData["total"][date] = 1
+    else DailyData["total"][date] += 1
+    updateDailyData("total",DailyData["total"])
+
+    if(DailyData["score"][date] === undefined) DailyData["score"][date] = score
+    else DailyData["score"][date] += score
+    updateDailyData("score",DailyData["score"])
+
+    if(DailyData["rarity"][date] === undefined) DailyData["rarity"][date] = rarity
+    else DailyData["rarity"][date] += rarity
+    updateDailyData("rarity",DailyData["rarity"])
+
     handleClickAway();
   };
 
@@ -749,7 +814,7 @@ function Daily() {
       else string += "⬜️"
       if(i === 7 || i === 11) string += "\n"
     }
-    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ": " + score + "-9:\n" + "Rarity: " + Math.round(rarity*10000)/10000 + "\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
+    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ": " + score + "-9:\n" + "Rarity: " + Math.round(rarity) + "\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
     
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -793,7 +858,7 @@ function Daily() {
               </Button>
             </Box>*/}
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '100px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '75px' }}>
               <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Typography variant="contained">
                 #{gridCount}
@@ -890,15 +955,28 @@ function Daily() {
                       >
                         <Box
                           sx={{
+                            position: 'absolute',
+                            top: 0,
+                            fontSize:'8px',
+                            width: '100%',
+                            textAlign: 'center',
+                            padding: '5px 0',
+                            zIndex: 3, 
+                          }}
+                        >
+                         { Math.round((DailyData[index][date] / DailyData['total'][date]) * 100) + "% completed"}
+                        </Box>
+                        <Box
+                          sx={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
                             position: 'absolute',
                             fontSize:'30px',
-                            top: 10,
+                            top: 15,
                             left: 0,
                             textAlign: 'center',
-                            zIndex: 1, // Ensure the image is behind the text
+                            zIndex: 1, 
                           }}
                         >
                           {lengths[index]}
@@ -982,7 +1060,7 @@ function Daily() {
                             zIndex: 2, // Ensure the text is above the image
                           }}
                         >
-                           <p style={{fontSize:'6px',}}> { (left[Math.floor(index/4)-1].localeCompare(top[(index%4)-1]) >= 0) ? (Math.round((PlayerData[playerName[index]].count[top[(index%4)-1] + left[Math.floor(index/4)-1]] / CategoryData[top[(index%4)-1] + left[Math.floor(index/4)-1]]['total']) * 10000)/100) + "%" : (Math.round((PlayerData[playerName[index]].count[left[Math.floor(index/4)-1] + top[(index%4)-1]] / CategoryData[left[Math.floor(index/4)-1] + top[(index%4)-1]]['total']) * 10000)/100) + "%" } </p>
+                           <p style={{fontSize:'8px',}}> { (left[Math.floor(index/4)-1].localeCompare(top[(index%4)-1]) >= 0) ? (Math.round((PlayerData[playerName[index]].count[top[(index%4)-1] + left[Math.floor(index/4)-1]] / CategoryData[top[(index%4)-1] + left[Math.floor(index/4)-1]]['total']) * 1000)/10) + "%" : (Math.round((PlayerData[playerName[index]].count[left[Math.floor(index/4)-1] + top[(index%4)-1]] / CategoryData[left[Math.floor(index/4)-1] + top[(index%4)-1]]['total']) * 1000)/10) + "%" } </p>
                         </Box>
                       </Box>
                     ): (
@@ -1133,8 +1211,8 @@ function Daily() {
                         <p  style={{color:'lightgray', textAlign: 'left',fontSize:"12px", marginRight: '5px'}}>{index+1}. </p>
                         <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"12px" }}>{text} </a>
                         <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"8px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
-                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "8px", color: 'lightgray' }}>
-                        { ((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) >= 0)) ? (Math.round((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] / CategoryData[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]]['total']) * 10000)/100) + "%" : ((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0)) ? (Math.round((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] / CategoryData[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]]['total']) * 10000)/100) + "%" : "0%" }
+                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "12px", color: 'lightgray' }}>
+                        { ((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) >= 0)) ? (Math.round((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] / CategoryData[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]]['total']) * 1000)/10) + "%" : ((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0)) ? (Math.round((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] / CategoryData[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]]['total']) * 1000)/10) + "%" : "0%" }
                         </p>
                         </span>
                     ))}
@@ -1146,8 +1224,17 @@ function Daily() {
             )}
             <Box sx={{ display: 'flex', alignItems: 'center', marginTop: -2, }}>
                 <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Rarity Score:</Typography>
-                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{Math.round(rarity*10000)/10000}</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{Math.round(rarity)}</Typography>
               </Box>
+
+            {guesses <= 0 &&  (
+
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: -1, marginBotton:.5 }}>
+                <Typography fontSize='12px'>Today's Average Score and Rarity:</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='-10px' marginRight='10px'>{ Math.round((DailyData['score'][date] / DailyData['total'][date]) * 10)/10 } and { Math.round((DailyData['rarity'][date] / DailyData['total'][date])) }</Typography>
+              </Box>
+
+            )}
             
 
             <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Tap on a logo or category for help</Typography>
