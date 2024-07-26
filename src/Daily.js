@@ -741,13 +741,21 @@ function Daily() {
       setRarity(rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*1000))/10)))
       newRarity = rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*1000))/10))
 
-      if(DailyData[selectedBox][date] === undefined) DailyData[selectedBox][date] = 1
-      else DailyData[selectedBox+""][date] += 1
-      updateDailyData(selectedBox+"",DailyData[selectedBox+""])
+      
     }
 
     if((guesses-1) === 0)
     {
+      for (let i = 0; i < 16; i++) 
+      { 
+        if(correctText[i] !== '')
+        {
+          if(DailyData[i][date] === undefined) DailyData[i][date] = 1
+          else DailyData[i+""][date] += 1
+          updateDailyData(i+"",DailyData[i+""])
+        }
+      }
+
       if(DailyData["total"][date] === undefined) DailyData["total"][date] = 1
       else DailyData["total"][date] += 1
       updateDailyData("total",DailyData["total"])
@@ -781,6 +789,16 @@ function Daily() {
 
   const giveUp = () => {
     setGuesses(0)
+
+    for (let i = 0; i < 16; i++) 
+    { 
+      if(correctText[i] !== '')
+      {
+        if(DailyData[i][date] === undefined) DailyData[i][date] = 1
+        else DailyData[i+""][date] += 1
+        updateDailyData(i+"",DailyData[i+""])
+      }
+    }
 
     if(DailyData["total"][date] === undefined) DailyData["total"][date] = 1
     else DailyData["total"][date] += 1
