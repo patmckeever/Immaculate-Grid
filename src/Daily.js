@@ -607,8 +607,8 @@ function Daily() {
    fetchCategoryData()
 
     const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
-    const date = formatter.format(new Date())
-   //const date = "7/15/2024"
+    //const date = formatter.format(new Date())
+   const date = "7/26/2024"
     console.log(date)
     gridCount = json.data[date].gridCount
     left = json.data[date].left
@@ -749,7 +749,7 @@ function Daily() {
       else string += "⬜️"
       if(i === 7 || i === 11) string += "\n"
     }
-    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ": " + score + "-9:\n" + "Rarity: " + rarity + "\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
+    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ": " + score + "-9:\n" + "Rarity: " + Math.round(rarity*10000)/10000 + "\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
     
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -1146,7 +1146,7 @@ function Daily() {
             )}
             <Box sx={{ display: 'flex', alignItems: 'center', marginTop: -2, }}>
                 <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Rarity Score:</Typography>
-                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{rarity}</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{Math.round(rarity*10000)/10000}</Typography>
               </Box>
             
 

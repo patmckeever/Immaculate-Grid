@@ -1169,7 +1169,7 @@ function Unlimited() {
             )}
             <Box sx={{ display: 'flex', alignItems: 'center', marginTop: -2, }}>
                 <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Rarity Score:</Typography>
-                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{rarity}</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{Math.round(rarity*10000)/10000}</Typography>
               </Box>
 
             <Typography fontSize='12px'>Tap on a logo or category for help</Typography>
