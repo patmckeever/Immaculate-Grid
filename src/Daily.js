@@ -607,8 +607,8 @@ function Daily() {
    fetchCategoryData()
 
     const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
-    //const date = formatter.format(new Date())
-   const date = "7/26/2024"
+    const date = formatter.format(new Date())
+    //const date = "7/26/2024"
     console.log(date)
     gridCount = json.data[date].gridCount
     left = json.data[date].left
