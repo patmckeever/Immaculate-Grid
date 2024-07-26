@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Button, CssBaseline, Paper, ClickAwayListener } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import image from './pll.png'; // Import the image
-import data from './players.json';
+import data from '../src/players.json';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import styled from 'styled-components';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-//import { firestore } from './firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { firestore } from './firebase';
 
-let json = require('./data.json');
+let json = require('../src/data.json');
 /*
 const gridCount = json.data.gridCount
 const left = json.data.left
@@ -21,6 +24,7 @@ const top = json.data.top
 let gridCount = ""
 let left = ""
 let top = ""
+let key = ""
 
 
 const list = [];
@@ -396,8 +400,9 @@ function Daily() {
   
 
   const [PlayerData, setPlayerData] = useState([]);
+  const [CategoryData, setCategoryData] = useState([]);
 
-  /*
+  
   const fetchData = async () => {
     try {
       const snapshot = await firestore.collection('players').get();
@@ -407,8 +412,21 @@ function Daily() {
           ...doc.data()
         };
       });
-      console.log(fetchedData['John Grant Jr.'].college)
       setPlayerData(fetchedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };   
+  const fetchCategoryData = async () => {
+    try {
+      const snapshot = await firestore.collection('categories').get();
+      const fetchedData = {};
+      snapshot.forEach(doc => {
+        fetchedData[doc.id] = {
+          ...doc.data()
+        };
+      });
+      setCategoryData(fetchedData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -422,24 +440,17 @@ function Daily() {
     } catch (error) {
       console.error('Error updating data:', error);
     }
-  };*/
-
-  /*
-  return (
-    <div>
-      <h1>JSON Data from Firebase</h1>
-      <ul>
-        {PlayerData.map(item => (
-          <li key={item.PlayerName}>
-            {item.name}: {item.value}
-            <button onClick={() => updateData(item.PlayerName, { value: 'Updated value' })}>
-              Update
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );*/
+  };
+  const updateCategoryData = async (CategoryName, newCategoryData) => {
+    try {
+      await firestore.collection('categories').doc(CategoryName).set(newCategoryData, { merge: true });
+      console.log('Data updated or added successfully');
+      // Optionally, fetch updated data again
+      fetchCategoryData();
+    } catch (error) {
+      console.error('Error updating or adding data:', error);
+    }
+  };
 
   const [players, setPlayers] = useState({}); // State to store players
 
@@ -473,6 +484,7 @@ function Daily() {
   const generate = (p) => { 
     setGuesses(9);
     setScore(0);
+    setRarity(900);
   };
   
 
@@ -500,6 +512,7 @@ function Daily() {
 
   const [guesses, setGuesses] = useState(9);
   const [score, setScore] = useState(0);
+  const [rarity, setRarity] = useState(900);
 
   
   
@@ -590,8 +603,8 @@ function Daily() {
   };
   useEffect(() => {
 
-   // fetchData()
-    //console.log(PlayerData)
+   fetchData()
+   fetchCategoryData()
 
     const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
     const date = formatter.format(new Date())
@@ -681,21 +694,23 @@ function Daily() {
       setScore(score+1)
       jawn[selectedBox] = 1
       setCheckArray(jawn)
-      /*
-      console.log(PlayerData)
-      console.log(PlayerData[playerName[selectedBox]].count)
-      PlayerData[playerName[selectedBox]].count++
-      console.log(PlayerData[playerName[selectedBox]].count)
-      updateData(playerName[selectedBox],{ count: PlayerData[playerName[selectedBox]].count })*/
-
-
       
+      if(left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0) key = left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]
+      else key = top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]
       
-        
-    }//
-   // console.log(jawn)
+      if(CategoryData[key] == undefined) CategoryData[key] = {"total": 1}
+      else CategoryData[key]["total"] += 1
+
+      if(PlayerData[playerName[selectedBox]].count[key] == undefined) PlayerData[playerName[selectedBox]].count[key] = 1
+      else PlayerData[playerName[selectedBox]].count[key]++
+
+      updateData(playerName[selectedBox],{ count: PlayerData[playerName[selectedBox]].count })
+      updateCategoryData(key,CategoryData[key])
+      
+      setRarity(rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*10000))/100)))
+
+    }
     handleClickAway();
-
   };
 
   const gameOver = () => {
@@ -734,7 +749,7 @@ function Daily() {
       else string += "⬜️"
       if(i === 7 || i === 11) string += "\n"
     }
-    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ":\n" + score + "-9\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
+    const textToCopy = "🥍 PLL Immaculate Grid #" + gridCount +  ": " + score + "-9:\n" + "Rarity: " + rarity + "\n" + string + "\nPlay at:\nhttps://premier-lacrosse-league.github.io/Immaculate-Grid/";
     
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -778,7 +793,7 @@ function Daily() {
               </Button>
             </Box>*/}
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '50px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '100px' }}>
               <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
               <Typography variant="contained">
                 #{gridCount}
@@ -950,7 +965,24 @@ function Daily() {
                           }}
                         >
                           <a style={{color: "#90caf9",fontSize:'9px',}} href={players[playerName[index]][17]} target = "_blank" rel="noreferrer"> {playerName[index]} </a>
+                          </Box>
+                        <Box
                           
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            fontSize:'5px',
+                            width: '30%',
+                            backgroundColor: 'black',
+                            color: 'white',
+                            textAlign: 'center',
+                            padding: '3px 0',
+                            
+                            zIndex: 2, // Ensure the text is above the image
+                          }}
+                        >
+                           <p style={{fontSize:'6px',}}> { (left[Math.floor(index/4)-1].localeCompare(top[(index%4)-1]) >= 0) ? (Math.round((PlayerData[playerName[index]].count[top[(index%4)-1] + left[Math.floor(index/4)-1]] / CategoryData[top[(index%4)-1] + left[Math.floor(index/4)-1]]['total']) * 10000)/100) + "%" : (Math.round((PlayerData[playerName[index]].count[left[Math.floor(index/4)-1] + top[(index%4)-1]] / CategoryData[left[Math.floor(index/4)-1] + top[(index%4)-1]]['total']) * 10000)/100) + "%" } </p>
                         </Box>
                       </Box>
                     ): (
@@ -1037,7 +1069,7 @@ function Daily() {
             {/* Subtitle with button to the right */}
             {guesses>0 ?  (
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: .5 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginTop: .5, marginBotton:.5 }}>
                 <Typography fontSize='15px'>Guesses Left:</Typography>
                 <Typography fontSize='35px' fontWeight = 'bold' marginLeft='-10px' marginRight='10px'>{guesses}</Typography>
                 <Button variant="contained" color="primary" onClick={giveUp}>
@@ -1098,16 +1130,26 @@ function Daily() {
                     <Box height={"10px"}></Box>
                     {arrays[selectedSum].map((text, index) => (
                       <span key={index} style={{ display: 'flex',alignItems: 'center'}}>
-                        <p  style={{color:'lightgray', textAlign: 'left',fontSize:"15px", marginRight: '5px'}}>{index+1}. </p>
-                        <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"15px" }}>{text} </a>
-                        <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"10px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
-                      </span>
+                        <p  style={{color:'lightgray', textAlign: 'left',fontSize:"12px", marginRight: '5px'}}>{index+1}. </p>
+                        <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"12px" }}>{text} </a>
+                        <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"8px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
+                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "8px", color: 'lightgray' }}>
+                        { ((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) >= 0)) ? (Math.round((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] / CategoryData[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]]['total']) * 10000)/100) + "%" : ((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0)) ? (Math.round((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] / CategoryData[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]]['total']) * 10000)/100) + "%" : "0%" }
+                        </p>
+                        </span>
                     ))}
+                    
                   </ModalBox>
                   </ClickAwayListener>
                 </Overlay>
               
             )}
+            <Box sx={{ display: 'flex', alignItems: 'center', marginTop: -2, }}>
+                <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Rarity Score:</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{rarity}</Typography>
+              </Box>
+            
+
             <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Tap on a logo or category for help</Typography>
             <Typography fontSize='12px' marginTop="-5px">Important:</Typography>
             <Typography fontSize='10px' marginTop="-15px">*Data from 2019 MLL season is currently unavailable<br></br>*MLL-only players don't have college/position/country/height data<br></br>*Player must have finished a season with MLL team to qualify<br></br>*Player must have finished NCAA career with team to qualify</Typography>

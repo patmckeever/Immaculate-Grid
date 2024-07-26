@@ -9,6 +9,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import App from './App';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { firestore } from './firebase';
 
 
 const list = [];
@@ -19,6 +23,7 @@ for (let name in data) {
 }
 
 let count = 0;
+let key = ""
 
 const category = {
   "Waterdogs": {
@@ -378,6 +383,59 @@ const squareSize = 80; // Size of each square
 
 function Unlimited() {
 
+  const [PlayerData, setPlayerData] = useState([]);
+  const [CategoryData, setCategoryData] = useState([]);
+
+  
+  const fetchData = async () => {
+    try {
+      const snapshot = await firestore.collection('players').get();
+      const fetchedData = {};
+      snapshot.forEach(doc => {
+        fetchedData[doc.id] = {
+          ...doc.data()
+        };
+      });
+      setPlayerData(fetchedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };   
+  const fetchCategoryData = async () => {
+    try {
+      const snapshot = await firestore.collection('categories').get();
+      const fetchedData = {};
+      snapshot.forEach(doc => {
+        fetchedData[doc.id] = {
+          ...doc.data()
+        };
+      });
+      setCategoryData(fetchedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };   
+  const updateData = async (PlayerName, newPlayerData) => {
+    try {
+      await firestore.collection('players').doc(PlayerName).update(newPlayerData);
+      console.log('Data updated successfully');
+      // Optionally, fetch updated data again
+      fetchData();
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
+  const updateCategoryData = async (CategoryName, newCategoryData) => {
+    try {
+      await firestore.collection('categories').doc(CategoryName).set(newCategoryData, { merge: true });
+      console.log('Data updated or added successfully');
+      // Optionally, fetch updated data again
+      fetchCategoryData();
+    } catch (error) {
+      console.error('Error updating or adding data:', error);
+    }
+  };
+
   const [players, setPlayers] = useState({}); // State to store players
 
   // Function to check categories for a player
@@ -489,6 +547,7 @@ function Unlimited() {
     
     setGuesses(9);
     setScore(0);
+    setRarity(900);
 
 
 
@@ -537,6 +596,7 @@ function Unlimited() {
 
   const [guesses, setGuesses] = useState(9);
   const [score, setScore] = useState(0);
+  const [rarity, setRarity] = useState(900);
 
   
   
@@ -629,6 +689,10 @@ function Unlimited() {
     
   };
   useEffect(() => {
+
+    fetchData()
+    fetchCategoryData()
+
     let p = {}; // Object to store player data
 
     for (let name in data) {
@@ -701,19 +765,21 @@ function Unlimited() {
       setPlayerName(playerName);
       setUnClickable(clickable);
       setScore(score+1)
-      /*
-      console.log(PlayerData)
-      console.log(PlayerData[playerName[selectedBox]].count)
-      PlayerData[playerName[selectedBox]].count++
-      console.log(PlayerData[playerName[selectedBox]].count)
-      updateData(playerName[selectedBox],{ count: PlayerData[playerName[selectedBox]].count })*/
-
-
       
+      if(left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0) key = left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]
+      else key = top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]
       
-        
-    }//
-   // console.log(jawn)
+      if(CategoryData[key] == undefined) CategoryData[key] = {"total": 1}
+      else CategoryData[key]["total"] += 1
+
+      if(PlayerData[playerName[selectedBox]].count[key] == undefined) PlayerData[playerName[selectedBox]].count[key] = 1
+      else PlayerData[playerName[selectedBox]].count[key]++
+
+      updateData(playerName[selectedBox],{ count: PlayerData[playerName[selectedBox]].count })
+      updateCategoryData(key,CategoryData[key])
+      
+      setRarity(rarity - (100-(Math.round(((PlayerData[playerName[selectedBox]].count[key]/CategoryData[key]['total'])*10000))/100)))   
+    }
     handleClickAway();
 
   };
@@ -940,6 +1006,24 @@ function Unlimited() {
                           <a style={{color: "#90caf9",fontSize:'9px',}} href={players[playerName[index]][17]} target = "_blank" rel="noreferrer"> {playerName[index]} </a>
                           
                         </Box>
+                        <Box
+                          
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            fontSize:'5px',
+                            width: '30%',
+                            backgroundColor: 'black',
+                            color: 'white',
+                            textAlign: 'center',
+                            padding: '3px 0',
+                            
+                            zIndex: 2, // Ensure the text is above the image
+                          }}
+                        >
+                           <p style={{fontSize:'6px',}}> { (left[Math.floor(index/4)-1].localeCompare(top[(index%4)-1]) >= 0) ? (Math.round((PlayerData[playerName[index]].count[top[(index%4)-1] + left[Math.floor(index/4)-1]] / CategoryData[top[(index%4)-1] + left[Math.floor(index/4)-1]]['total']) * 10000)/100) + "%" : (Math.round((PlayerData[playerName[index]].count[left[Math.floor(index/4)-1] + top[(index%4)-1]] / CategoryData[left[Math.floor(index/4)-1] + top[(index%4)-1]]['total']) * 10000)/100) + "%" } </p>
+                        </Box>
                       </Box>
                     ): (
 
@@ -1073,6 +1157,9 @@ function Unlimited() {
                         <p  style={{color:'lightgray', textAlign: 'left',fontSize:"15px", marginRight: '5px'}}>{index+1}. </p>
                         <a  href={players[text][17]} target="_blank" rel="noreferrer" style={{ color: '#90caf9',textAlign: 'left',fontSize:"15px" }}>{text} </a>
                         <p  style={{textAlign: 'bottom', marginLeft: '10px',fontSize:"10px",color:'lightgray' }}>{"("}{players[text][1]}{")"}</p>
+                        <p style={{ textAlign: 'bottom', marginLeft: '10px', fontSize: "8px", color: 'lightgray' }}>
+                        { ((PlayerData[text] != undefined) && (PlayerData[text].count != undefined) && (PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) >= 0)) ? (Math.round((PlayerData[text].count[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]] / CategoryData[top[(selectedBox%4)-1] + left[Math.floor(selectedBox/4)-1]]['total']) * 10000)/100) + "%" : ((PlayerData[text] != undefined) && (PlayerData[text].count != undefined) && (PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] != undefined) && (left[Math.floor(selectedBox/4)-1].localeCompare(top[(selectedBox%4)-1]) < 0)) ? (Math.round((PlayerData[text].count[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]] / CategoryData[left[Math.floor(selectedBox/4)-1] + top[(selectedBox%4)-1]]['total']) * 10000)/100) + "%" : "0%" }
+                        </p>
                       </span>
                     ))}
                   </ModalBox>
@@ -1080,6 +1167,11 @@ function Unlimited() {
                 </Overlay>
               
             )}
+            <Box sx={{ display: 'flex', alignItems: 'center', marginTop: -2, }}>
+                <Typography fontSize='12px' display = 'flex' justify-content = 'center' align-items = 'center'>Rarity Score:</Typography>
+                <Typography fontSize='15px' fontWeight = 'bold' marginLeft='5px' marginRight='10px'>{rarity}</Typography>
+              </Box>
+
             <Typography fontSize='12px'>Tap on a logo or category for help</Typography>
             <Typography fontSize='12px' marginTop="-5px">Important:</Typography>
             <Typography fontSize='10px' marginTop="-15px">*Data from 2019 MLL season is currently unavailable<br></br>*MLL-only players don't have college/position/country/height data<br></br>*Player must have finished a season with MLL team to qualify<br></br>*Player must have finished NCAA career with team to qualify</Typography>
