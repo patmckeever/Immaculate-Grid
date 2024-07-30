@@ -285,6 +285,19 @@
         "200P"
       ],
       "gridCount": 32
+    },
+    "7/30/2024": {
+      "left": [
+        "Redwoods",
+        "Outlaws",
+        "Atlas"
+      ],
+      "top": [
+        "Cannons",
+        "Chaos",
+        "30GB"
+      ],
+      "gridCount": 33
     }
   }
 }
