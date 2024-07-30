@@ -298,6 +298,97 @@
         "30GB"
       ],
       "gridCount": 33
+    },
+    "7/31/2024": {
+      "left": [
+        "Atlas",
+        "Outlaws",
+        "Whipsnakes"
+      ],
+      "top": [
+        "Waterdogs",
+        "Duke",
+        "300GB"
+      ],
+      "gridCount": 34
+    },
+    "8/1/2024": {
+      "left": [
+        "Atlas",
+        "Outlaws",
+        "Redwoods"
+      ],
+      "top": [
+        "Cannons",
+        "Waterdogs",
+        "TALL"
+      ],
+      "gridCount": 35
+    },
+    "8/2/2024": {
+      "left": [
+        "Redwoods",
+        "Cannons",
+        "Atlas"
+      ],
+      "top": [
+        "Chaos",
+        "Chrome",
+        "Maryland"
+      ],
+      "gridCount": 36
+    },
+    "8/3/2024": {
+      "left": [
+        "Waterdogs",
+        "Redwoods",
+        "Cannons"
+      ],
+      "top": [
+        "Atlas",
+        "Blaze",
+        "One"
+      ],
+      "gridCount": 37
+    },
+    "8/4/2024": {
+      "left": [
+        "Chaos",
+        "Outlaws",
+        "Redwoods"
+      ],
+      "top": [
+        "Atlas",
+        "Notre Dame",
+        "Duke"
+      ],
+      "gridCount": 38
+    },
+    "8/5/2024": {
+      "left": [
+        "Chaos",
+        "Atlas",
+        "Whipsnakes"
+      ],
+      "top": [
+        "Waterdogs",
+        "USA",
+        "CAN"
+      ],
+      "gridCount": 39
+    },
+    "8/6/2024": {
+      "left": [
+        "Chaos",
+        "Redwoods",
+        "Outlaws"
+      ],
+      "top": [
+        "Cannons",
+        "Launch",
+        "Machine"
+      ],
+      "gridCount": 40
     }
   }
 }
