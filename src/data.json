@@ -389,6 +389,19 @@
         "Machine"
       ],
       "gridCount": 40
+    },
+    "8/7/2024": {
+      "left": [
+        "Atlas",
+        "Waterdogs",
+        "Redwoods"
+      ],
+      "top": [
+        "Duke",
+        "Maryland",
+        "Notre Dame"
+      ],
+      "gridCount": 41
     }
   }
 }
