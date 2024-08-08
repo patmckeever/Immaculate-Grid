@@ -402,6 +402,19 @@
         "Cannons"
       ],
       "gridCount": 41
+    },
+    "8/8/2024": {
+      "left": [
+        "Chaos",
+        "Redwoods",
+        "Archers"
+      ],
+      "top": [
+        "CAN",
+        "Rattlers",
+        "Outlaws"
+      ],
+      "gridCount": 42
     }
   }
 }
