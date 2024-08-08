@@ -3,8 +3,8 @@ const fs = require('fs');
 let json = require('./src/data.json');
 let data =  require('./src/players.json');
 
-const prevDate = '8/7/2024'
-const date = '8/8/2024'
+const prevDate = '8/12/2024'
+const date = '8/13/2024'
 
 let p = {};
 for (let name in data) {
@@ -91,7 +91,7 @@ const generate = () => {
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-            if(bigCheck(p,left[i],top[j]).length<1)
+            if(bigCheck(p,left[i],top[j]).length<3)
             {
                 count++
                 if(count<1000) generate(); 

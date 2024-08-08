@@ -415,6 +415,71 @@
         "Outlaws"
       ],
       "gridCount": 42
+    },
+    "8/9/2024": {
+      "left": [
+        "Atlas",
+        "Redwoods",
+        "Outlaws"
+      ],
+      "top": [
+        "Waterdogs",
+        "Bayhawks",
+        "Virginia"
+      ],
+      "gridCount": 43
+    },
+    "8/10/2024": {
+      "left": [
+        "Cannons",
+        "Outlaws",
+        "Whipsnakes"
+      ],
+      "top": [
+        "Chaos",
+        "200P",
+        "300GB"
+      ],
+      "gridCount": 44
+    },
+    "8/11/2024": {
+      "left": [
+        "Whipsnakes",
+        "Outlaws",
+        "Waterdogs"
+      ],
+      "top": [
+        "Chrome",
+        "One",
+        "Lefty"
+      ],
+      "gridCount": 45
+    },
+    "8/12/2024": {
+      "left": [
+        "Outlaws",
+        "Whipsnakes",
+        "Cannons"
+      ],
+      "top": [
+        "Redwoods",
+        "Virginia",
+        "500SV"
+      ],
+      "gridCount": 46
+    },
+    "8/13/2024": {
+      "left": [
+        "Atlas",
+        "Cannons",
+        "Whipsnakes"
+      ],
+      "top": [
+        "Outlaws",
+        "Lizards",
+        "USA"
+      ],
+      "gridCount": 47
     }
   }
 }
