@@ -480,6 +480,97 @@
         "USA"
       ],
       "gridCount": 47
+    },
+    "8/14/2024": {
+      "left": [
+        "Whipsnakes",
+        "Atlas",
+        "Waterdogs"
+      ],
+      "top": [
+        "Maryland",
+        "Duke",
+        "Chrome"
+      ],
+      "gridCount": 48
+    },
+    "8/15/2024": {
+      "left": [
+        "Chaos",
+        "Atlas",
+        "Whipsnakes"
+      ],
+      "top": [
+        "Bayhawks",
+        "Outlaws",
+        "CAN"
+      ],
+      "gridCount": 49
+    },
+    "8/16/2024": {
+      "left": [
+        "Atlas",
+        "Whipsnakes",
+        "Archers"
+      ],
+      "top": [
+        "Cannons",
+        "Hounds",
+        "Machine"
+      ],
+      "gridCount": 50
+    },
+    "8/17/2024": {
+      "left": [
+        "Redwoods",
+        "Atlas",
+        "Cannons"
+      ],
+      "top": [
+        "Chaos",
+        "Notre Dame",
+        "Virginia"
+      ],
+      "gridCount": 51
+    },
+    "8/18/2024": {
+      "left": [
+        "Whipsnakes",
+        "Cannons",
+        "Archers"
+      ],
+      "top": [
+        "Waterdogs",
+        "One",
+        "SHORT"
+      ],
+      "gridCount": 52
+    },
+    "8/19/2024": {
+      "left": [
+        "Atlas",
+        "Outlaws",
+        "Waterdogs"
+      ],
+      "top": [
+        "Chaos",
+        "Virginia",
+        "Denver"
+      ],
+      "gridCount": 53
+    },
+    "8/20/2024": {
+      "left": [
+        "Outlaws",
+        "Chaos",
+        "Archers"
+      ],
+      "top": [
+        "Chrome",
+        "Machine",
+        "Blaze"
+      ],
+      "gridCount": 54
     }
   }
 }

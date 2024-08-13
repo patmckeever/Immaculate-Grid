@@ -635,7 +635,7 @@ function Daily() {
 
     const formatter = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York'});
     date = formatter.format(new Date())
-   // const date = "8/13/2024"
+   //const date = "8/20/2024"
     console.log(date)
     gridCount = json.data[date].gridCount
     left = json.data[date].left
