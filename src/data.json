@@ -509,66 +509,66 @@
     },
     "8/16/2024": {
       "left": [
-        "Atlas",
-        "Whipsnakes",
-        "Archers"
+        "ATL",
+        "WHP",
+        "ARC"
       ],
       "top": [
         "Cannons",
-        "Hounds",
-        "Machine"
+        "HND",
+        "MAC"
       ],
       "gridCount": 50
     },
     "8/17/2024": {
       "left": [
-        "Redwoods",
-        "Atlas",
+        "RED",
+        "ATL",
         "Cannons"
       ],
       "top": [
-        "Chaos",
+        "CHA",
         "Notre Dame",
-        "Virginia"
+        "star"
       ],
       "gridCount": 51
     },
     "8/18/2024": {
       "left": [
-        "Whipsnakes",
+        "WHP",
         "Cannons",
-        "Archers"
+        "ARC"
       ],
       "top": [
-        "Waterdogs",
-        "One",
-        "SHORT"
+        "WAT",
+        "champ",
+        "seasonGoals"
       ],
       "gridCount": 52
     },
     "8/19/2024": {
       "left": [
-        "Atlas",
-        "Outlaws",
-        "Waterdogs"
+        "ATL",
+        "OUT",
+        "WAT"
       ],
       "top": [
-        "Chaos",
+        "CHA",
         "Virginia",
-        "Denver"
+        "Georgetown"
       ],
       "gridCount": 53
     },
     "8/20/2024": {
       "left": [
-        "Outlaws",
-        "Chaos",
-        "Archers"
+        "OUT",
+        "CHA",
+        "ARC"
       ],
       "top": [
-        "Chrome",
-        "Machine",
-        "Blaze"
+        "Cannons",
+        "star5",
+        "careerCT"
       ],
       "gridCount": 54
     }
