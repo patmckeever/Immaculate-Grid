@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Immaculate-Grid/static/css/main.e6c13ad2.css",
-    "main.js": "/Immaculate-Grid/static/js/main.a1ce95cb.js",
+    "main.js": "/Immaculate-Grid/static/js/main.99e86bf1.js",
     "static/js/453.68693753.chunk.js": "/Immaculate-Grid/static/js/453.68693753.chunk.js",
     "static/media/Hammerheads.png": "/Immaculate-Grid/static/media/Hammerheads.d354943a400334a03516.png",
     "static/media/Blaze.png": "/Immaculate-Grid/static/media/Blaze.f044cb9085a4733393cf.png",
@@ -16,9 +16,24 @@
     "static/media/Launch.png": "/Immaculate-Grid/static/media/Launch.cac5e5daeb671cd7776c.png",
     "static/media/Nationals.png": "/Immaculate-Grid/static/media/Nationals.6b7e8f7b2f26447e2734.png",
     "static/media/Lizards.png": "/Immaculate-Grid/static/media/Lizards.60938ba5696705f0dc65.png",
+    "static/media/Albany.png": "/Immaculate-Grid/static/media/Albany.138d376ec09c4bf96f26.png",
+    "static/media/Delaware.png": "/Immaculate-Grid/static/media/Delaware.522ec022b3a16e8d4ba3.png",
+    "static/media/Marquette.png": "/Immaculate-Grid/static/media/Marquette.c8efbf6fc7280005f98a.png",
+    "static/media/Hofstra.png": "/Immaculate-Grid/static/media/Hofstra.39ff44df0940c100e5a3.png",
     "static/media/cannons.png": "/Immaculate-Grid/static/media/cannons.0d1b2cf882967b1bf409.png",
+    "static/media/NorthCarolina.png": "/Immaculate-Grid/static/media/NorthCarolina.e67b10b149935aa9538e.png",
+    "static/media/HighPoint.png": "/Immaculate-Grid/static/media/HighPoint.07eb46ba2ec09f513ba6.png",
+    "static/media/PennState.png": "/Immaculate-Grid/static/media/PennState.186ea59169dd14c65388.png",
+    "static/media/UMass.png": "/Immaculate-Grid/static/media/UMass.b55006c2162576055912.png",
     "static/media/waterdogs.png": "/Immaculate-Grid/static/media/waterdogs.00a9740ab52ec0654cfd.png",
+    "static/media/Villanova.png": "/Immaculate-Grid/static/media/Villanova.4cfcf1524e4f8264361f.png",
+    "static/media/Georgetown.png": "/Immaculate-Grid/static/media/Georgetown.c2f776d3a03e7b276afe.png",
+    "static/media/OhioState.png": "/Immaculate-Grid/static/media/OhioState.fb04ecc5beb235e2a4a9.png",
+    "static/media/Penn.png": "/Immaculate-Grid/static/media/Penn.9b2e92f62cc3e54f4fb5.png",
+    "static/media/Princeton.png": "/Immaculate-Grid/static/media/Princeton.afc9f0e98c1e005a166c.png",
     "static/media/Riptide.png": "/Immaculate-Grid/static/media/Riptide.b5f3b4520450c7e133ca.png",
+    "static/media/Towson.png": "/Immaculate-Grid/static/media/Towson.46d093c56d99faa8c95b.png",
+    "static/media/Lehigh.png": "/Immaculate-Grid/static/media/Lehigh.8aea639f5943a353bfcd.png",
     "static/media/atlas.png": "/Immaculate-Grid/static/media/atlas.f6620b3fd7a68879cd29.png",
     "static/media/chaos.png": "/Immaculate-Grid/static/media/chaos.eeb181281cdfa140f92e.png",
     "static/media/Chrome.png": "/Immaculate-Grid/static/media/Chrome.5bd4d4ef66a4f158966c.png",
@@ -28,11 +43,11 @@
     "static/media/whipsnakes.png": "/Immaculate-Grid/static/media/whipsnakes.1a63598595fcc019b467.png",
     "index.html": "/Immaculate-Grid/index.html",
     "main.e6c13ad2.css.map": "/Immaculate-Grid/static/css/main.e6c13ad2.css.map",
-    "main.a1ce95cb.js.map": "/Immaculate-Grid/static/js/main.a1ce95cb.js.map",
+    "main.99e86bf1.js.map": "/Immaculate-Grid/static/js/main.99e86bf1.js.map",
     "453.68693753.chunk.js.map": "/Immaculate-Grid/static/js/453.68693753.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a1ce95cb.js"
+    "static/js/main.99e86bf1.js"
   ]
 }
