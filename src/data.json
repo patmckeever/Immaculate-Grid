@@ -571,6 +571,97 @@
         "careerCT"
       ],
       "gridCount": 54
+    },
+    "8/21/2024": {
+      "left": [
+        "CHA",
+        "WHP",
+        "Cannons"
+      ],
+      "top": [
+        "WAT",
+        "OUT",
+        "Rutgers"
+      ],
+      "gridCount": 55
+    },
+    "8/22/2024": {
+      "left": [
+        "Cannons",
+        "ATL",
+        "OUT"
+      ],
+      "top": [
+        "RED",
+        "WAT",
+        "seasonAssists"
+      ],
+      "gridCount": 56
+    },
+    "8/23/2024": {
+      "left": [
+        "ATL",
+        "ARC",
+        "OUT"
+      ],
+      "top": [
+        "CHA",
+        "Duke",
+        "North Carolina"
+      ],
+      "gridCount": 57
+    },
+    "8/24/2024": {
+      "left": [
+        "OUT",
+        "CHA",
+        "ATL"
+      ],
+      "top": [
+        "mvp",
+        "roy",
+        "careerTwos"
+      ],
+      "gridCount": 58
+    },
+    "8/25/2024": {
+      "left": [
+        "Cannons",
+        "OUT",
+        "WAT"
+      ],
+      "top": [
+        "RED",
+        "Maryland",
+        "dpoy"
+      ],
+      "gridCount": 59
+    },
+    "8/26/2024": {
+      "left": [
+        "OUT",
+        "Cannons",
+        "ATL"
+      ],
+      "top": [
+        "HND",
+        "LAU",
+        "CAN"
+      ],
+      "gridCount": 60
+    },
+    "8/27/2024": {
+      "left": [
+        "ARC",
+        "WHP",
+        "ATL"
+      ],
+      "top": [
+        "CHA",
+        "BLZ",
+        "TALL"
+      ],
+      "gridCount": 61
     }
   }
 }

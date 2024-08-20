@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Button, CssBaseline, Paper, ClickAwayListener } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -678,8 +677,7 @@ function Unlimited() {
       let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse", "North Carolina", "Ohio State", "Penn State", "Michigan", "Rutgers", "Yale", "Princeton", "Penn", "Cornell", "Brown", "Albany", "Villanova", "Georgetown", "Marquette", "High Point", "UMass", "Towson", "Delaware", "Hofstra", "Lehigh", "Loyola"];
       let extraCats = ["star","star5","champ","mvp","allpro","opoy","dpoy","roy", "TALL","SHORT","Lefty","One","USA", "CAN", "IRQ"]
       let statcats = ["seasonPoints", "seasonGoals", "seasonAssists", "seasonGB", "seasonCT", "seasonSaves","careerPoints", "careerGoals", "careerAssists", "careerGB", "careerCT", "careerSaves", "careerGames", "careerTwos"];
-      let mllCats = ["Dragons", "Riptide", "Bayhawks", "Lizards", "Hounds", "Pride", "Rattlers", "Launch", "Blaze", "Machine", "Nationals", "Hammerheads", "Chrome", "Barrage"];
-
+      let mllCats = ["DRG", "RIP", "BAY", "NYL", "HND", "NJP", "RAT", "LAU", "BLZ", "MAC", "NAT", "HAM", "CHR", "BAR"];
       
       for (let i = 0; i < 3; i++) {
         let cat = ""
@@ -690,7 +688,7 @@ function Unlimited() {
 
       for (let i = 0; i < 3; i++) {
         let cat = ""
-        const topic = ['pll', 'colleges', 'extra', 'stats', 'mll'][Math.floor(Math.random() * 4)];
+        const topic = ['pll', 'colleges', 'extra', 'stats', 'mll'][Math.floor(Math.random() * 5)];
         switch (topic) {
           case 'pll':
             cat = pllCats[Math.floor(Math.random() * pllCats.length)];

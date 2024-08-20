@@ -1,10 +1,10 @@
 // Function to generate categories
 const fs = require('fs');
 let json = require('./src/data.json');
-let data =  require('./src/players.json');
+let data =  require('./src/final.json');
 
-const prevDate = '8/19/2024'
-const date = '8/20/2024'
+const prevDate = '8/25/2024'
+const date = '8/26/2024'
 
 let p = {};
 for (let name in data) {
@@ -46,45 +46,50 @@ const generate = () => {
     left = []
     top = []
 
-    let pllCats = ["Atlas", "Archers", "Cannons", "Chaos", "Outlaws", "Redwoods", "Waterdogs", "Whipsnakes"];
-    let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse","USA", "CAN", "IRQ"];
-    //let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One","A","M","FO","SSDM","LSM","D","G"];
-    let statcats = ["30P", "200P", "30GB", "300GB", "100SV", "500SV","TALL","SHORT","Lefty","One"];
-    let mllCats = ["Dragons", "Riptide", "Bayhawks", "Lizards", "Hounds", "Pride", "Rattlers", "Launch", "Blaze", "Machine", "Nationals", "Hammerheads", "Chrome", "Barrage"];
+    let pllCats = ["ATL", "ARC", "Cannons", "CHA", "OUT", "RED", "WAT", "WHP"];
+      let collcats = ["Virginia", "Notre Dame", "Maryland", "Johns Hopkins", "Duke", "Denver", "Syracuse", "North Carolina", "Ohio State", "Penn State", "Michigan", "Rutgers", "Yale", "Princeton", "Penn", "Cornell", "Brown", "Albany", "Villanova", "Georgetown", "Marquette", "High Point", "UMass", "Towson", "Delaware", "Hofstra", "Lehigh", "Loyola"];
+      let extraCats = ["star","star5","champ","mvp","allpro","opoy","dpoy","roy", "TALL","SHORT","Lefty","One","USA", "CAN", "IRQ"]
+      let statcats = ["seasonPoints", "seasonGoals", "seasonAssists", "seasonGB", "seasonCT", "seasonSaves","careerPoints", "careerGoals", "careerAssists", "careerGB", "careerCT", "careerSaves", "careerGames", "careerTwos"];
+      let mllCats = ["DRG", "RIP", "BAY", "NYL", "HND", "NJP", "RAT", "LAU", "BLZ", "MAC", "NAT", "HAM", "CHR", "BAR"];
 
 
-    for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         let cat = ""
         cat = pllCats[Math.floor(Math.random() * pllCats.length)]
         left.push(cat);
         pllCats = pllCats.filter(item => item !== cat);
-    }
+      }
 
-    for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         let cat = ""
-        const topic = ['pll', 'colleges', 'stats', 'mll'][Math.floor(Math.random() * 4)];
+        const topic = ['pll', 'colleges', 'extra', 'stats', 'mll'][Math.floor(Math.random() * 5)];
         switch (topic) {
-        case 'pll':
+          case 'pll':
             cat = pllCats[Math.floor(Math.random() * pllCats.length)];
             top.push(cat);
             pllCats = pllCats.filter(item => item !== cat)
             break;
-        case 'colleges':
+          case 'colleges':
             cat = collcats[Math.floor(Math.random() * collcats.length)];
             top.push(cat);
             collcats = collcats.filter(item => item !== cat)
             break;
-        case 'stats':
+          case 'extra':
+            cat = extraCats[Math.floor(Math.random() * extraCats.length)];
+            top.push(cat);
+            extraCats = extraCats.filter(item => item !== cat)
+            break;
+          case 'stats':
             cat = statcats[Math.floor(Math.random() * statcats.length)];
             top.push(cat);
             statcats = statcats.filter(item => item !== cat)
             break;
-        case 'mll':
+          case 'mll':
             cat = mllCats[Math.floor(Math.random() * mllCats.length)];
             top.push(cat);
             mllCats = mllCats.filter(item => item !== cat)
             break;
-        default:
+          default:
             break;
         }
     }
