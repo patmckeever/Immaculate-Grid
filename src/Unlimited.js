@@ -1032,7 +1032,7 @@ function Unlimited() {
           >
             {/* Title with button to the right */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '75px' }}>
-              <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
+              <Typography fontSize='12px'>PLL Immaculate Grid</Typography>
               <Button style={{fontSize:'10px'}} variant="contained" color="primary" onClick={handleGenerateClick}>
                 New Game
               </Button>

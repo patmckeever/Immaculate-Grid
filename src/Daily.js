@@ -1085,7 +1085,7 @@ function Daily() {
             </Box>*/}
             
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, marginBottom: .5, marginLeft: 2, marginTop: '75px' }}>
-              <Typography fontSize='12px'>PLL Immaculate Grid (BETA)</Typography>
+              <Typography fontSize='12px'>PLL Immaculate Grid</Typography>
               <Typography variant="contained">
                 #{gridCount}
               </Typography>
